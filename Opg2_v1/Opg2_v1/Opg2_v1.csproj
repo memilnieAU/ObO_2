@@ -81,24 +81,24 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Interface\ICloseable.cs" />
-    <Compile Include="ViewModel\BP_Win_ViewModel.cs" />
-    <Compile Include="ViewModel\BS_Win_ViewModel.cs" />
-    <Compile Include="ViewModel\HomePage_Win_ViewModel.cs" />
-    <Compile Include="ViewModel\Login_Win_ViewModel.cs" />
-    <Compile Include="ViewModel\Weigth_Win_ViewModel.cs" />
-    <Compile Include="View\BP_Win.xaml.cs">
+    <Compile Include="P_Layer\ViewModel\BP_Win_ViewModel.cs" />
+    <Compile Include="P_Layer\ViewModel\BS_Win_ViewModel.cs" />
+    <Compile Include="P_Layer\ViewModel\HomePage_Win_ViewModel.cs" />
+    <Compile Include="P_Layer\ViewModel\Login_Win_ViewModel.cs" />
+    <Compile Include="P_Layer\ViewModel\Weigth_Win_ViewModel.cs" />
+    <Compile Include="P_Layer\View\BP_Win.xaml.cs">
       <DependentUpon>BP_Win.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\BS_Win.xaml.cs">
+    <Compile Include="P_Layer\View\BS_Win.xaml.cs">
       <DependentUpon>BS_Win.xaml</DependentUpon>
     </Compile>
     <Compile Include="HomePage_Win.xaml.cs">
       <DependentUpon>HomePage_Win.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Login_Win.xaml.cs">
+    <Compile Include="P_Layer\View\Login_Win.xaml.cs">
       <DependentUpon>Login_Win.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Weigth_Win.xaml.cs">
+    <Compile Include="P_Layer\View\Weigth_Win.xaml.cs">
       <DependentUpon>Weigth_Win.xaml</DependentUpon>
     </Compile>
     <Page Include="HomePage_Win.xaml">
@@ -109,23 +109,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DTO_BPressure.cs" />
-    <Compile Include="DTO_BSugar.cs" />
-    <Compile Include="DTO_Weight.cs" />
-    <Compile Include="LogicStump.cs" />
-    <Page Include="View\BP_Win.xaml">
+    <Compile Include="DTOs\DTO_BPressure.cs" />
+    <Compile Include="DTOs\DTO_BSugar.cs" />
+    <Compile Include="DTOs\DTO_Weight.cs" />
+    <Compile Include="L_Layer\LogicStump.cs" />
+    <Page Include="P_Layer\View\BP_Win.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\BS_Win.xaml">
+    <Page Include="P_Layer\View\BS_Win.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Login_Win.xaml">
+    <Page Include="P_Layer\View\Login_Win.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Weigth_Win.xaml">
+    <Page Include="P_Layer\View\Weigth_Win.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,6 +156,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="D_Layer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

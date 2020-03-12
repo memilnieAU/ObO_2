@@ -13,18 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Opg2_v1.Interface;
 using Opg2_v1.ViewModel;
+using System.ComponentModel;
 
 namespace Opg2_v1.View
 {
     /// <summary>
-    /// Interaction logic for Weigth_Win.xaml
+    /// Interaction logic for BP_Win.xaml
     /// </summary>
-    public partial class Weigth_Win : Window, ICloseable
+    public partial class BP_Win : Window, ICloseable
     {
-        public Weigth_Win()
+        public BP_Win()
         {
+
             InitializeComponent();
-            DataContext = new Weigth_Win_ViewModel();
+            DataContext = new BP_Win_ViewModel();
         }
     }
 }

@@ -17,15 +17,15 @@ using Opg2_v1.ViewModel;
 namespace Opg2_v1.View
 {
     /// <summary>
-    /// Interaction logic for BP_Win.xaml
+    /// Interaction logic for Login_Win.xaml
     /// </summary>
-    public partial class BP_Win : Window, ICloseable
+    public partial class Login_Win : Window, ICloseable
     {
-        public BP_Win()
+        public Login_Win()
         {
-            
             InitializeComponent();
-            DataContext = new BP_Win_ViewModel();
+            DataContext = new Login_win_ViewModel();
+
         }
     }
 }

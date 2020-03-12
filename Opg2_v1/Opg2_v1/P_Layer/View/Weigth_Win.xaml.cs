@@ -17,14 +17,18 @@ using Opg2_v1.ViewModel;
 namespace Opg2_v1.View
 {
     /// <summary>
-    /// Interaction logic for Login_Win.xaml
+    /// Interaction logic for Weigth_Win.xaml
     /// </summary>
-    public partial class Login_Win : Window, ICloseable
+    public partial class Weigth_Win : Window, ICloseable
     {
-        public Login_Win()
+        public Weigth_Win()
         {
             InitializeComponent();
-            DataContext = new Login_Win_ViewModel();
+            DataContext = new Weigth_Win_ViewModel();
+        }
+
+        private void Weigth_Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
 
         }
     }
