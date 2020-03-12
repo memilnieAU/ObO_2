@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Opg2_v1.Interface;
 using Opg2_v1.ViewModel;
+using Logic_tier;
 
 namespace Opg2_v1.View
 {
@@ -21,15 +22,12 @@ namespace Opg2_v1.View
     /// </summary>
     public partial class Weigth_Win : Window, ICloseable
     {
-        public Weigth_Win()
+        public Weigth_Win(Logic logicRef)
         {
             InitializeComponent();
-            DataContext = new Weigth_Win_ViewModel();
+            DataContext = new Weigth_Win_ViewModel(logicRef);
         }
 
-        private void Weigth_Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
+        
     }
 }

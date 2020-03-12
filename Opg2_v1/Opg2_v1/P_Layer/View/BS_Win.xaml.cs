@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Opg2_v1.Interface;
 using Opg2_v1.ViewModel;
+using Logic_tier;
 
 namespace Opg2_v1.View
 {
@@ -21,10 +22,10 @@ namespace Opg2_v1.View
     /// </summary>
     public partial class BS_Win : Window, ICloseable
     {
-        public BS_Win()
+        public BS_Win(Logic logicRef)
         {
             InitializeComponent();
-            DataContext = new BS_Win_ViewModel();
+            DataContext = new BS_Win_ViewModel(logicRef);
         }
         
        

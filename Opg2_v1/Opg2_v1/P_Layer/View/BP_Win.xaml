@@ -25,6 +25,6 @@
         </Grid.RowDefinitions>
 
         <Button x:Name="But_Close" Content="Return" Command="{Binding CloseWindowCommandHP, Mode=OneWay}" CommandParameter="{Binding ElementName=BP_Window}" Grid.Column="3" Grid.Row="3" />
-
+        <TextBox x:Name="TBx_WinCounter" Text="{Binding Path=WindowCount}" IsReadOnly="True"/>
     </Grid>
 </Window>

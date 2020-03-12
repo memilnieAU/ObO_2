@@ -8,15 +8,20 @@ using GalaSoft.MvvmLight.Command;
 using Opg2_v1.Interface;
 using Opg2_v1.View;
 using Prism.Commands;
+using Logic_tier;
 
 namespace Opg2_v1.ViewModel
 {
     class BS_Win_ViewModel
     {
-
-        public BS_Win_ViewModel()
+        Logic logic_Lay;
+        public int WindowCount { get; set; }
+        public BS_Win_ViewModel(Logic logicRef)
         {
+            logic_Lay = logicRef;
             this.CloseWindowCommandHP = new RelayCommand<ICloseable>(this.CloseWindowHP);
+            logic_Lay.WindowCounter++;
+        WindowCount = logic_Lay.WindowCounter;
         }
         #region Open HP Window Commands
         //Properties
@@ -42,7 +47,7 @@ namespace Opg2_v1.ViewModel
 
         void OpenHPCommandHandler()
         {
-            HP_Window = new HomePage_Win();
+            HP_Window = new HomePage_Win(logic_Lay);
             HP_Window.Show();
 
         }

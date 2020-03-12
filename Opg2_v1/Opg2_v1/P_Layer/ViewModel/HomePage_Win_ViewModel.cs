@@ -9,21 +9,24 @@ using Opg2_v1.View;
 using Opg2_v1;
 using Opg2_v1.Interface;
 using GalaSoft.MvvmLight.Command;
+using Logic_tier;
 
 namespace Opg2_v1.ViewModel
 {
     public class HomePage_Win_ViewModel
     {
-       
+        Logic logic_Lay;
         //Constructor
-        public HomePage_Win_ViewModel()
+        public int WindowCount { get; set; }
+        public HomePage_Win_ViewModel(Logic logicRef)
         {
-
+            logic_Lay = logicRef;
             this.CloseWindowCommandBP = new RelayCommand<ICloseable>(this.CloseWindowBP);
             this.CloseWindowCommandBS = new RelayCommand<ICloseable>(this.CloseWindowBS);
             this.CloseWindowCommandWeigth = new RelayCommand<ICloseable>(this.CloseWindowWeigth);
+            logic_Lay.WindowCounter++;
+        WindowCount = logic_Lay.WindowCounter;
 
-            
         }
 
         #region Open BP Window Commands
@@ -50,7 +53,7 @@ namespace Opg2_v1.ViewModel
 
         void OpenBPCommandHandler()
         {
-            BP_Window = new BP_Win();
+            BP_Window = new BP_Win(logic_Lay);
             BP_Window.Show();
             
         }
@@ -80,7 +83,7 @@ namespace Opg2_v1.ViewModel
 
         void OpenBSCommandHandler()
         {
-            BS_Window = new BS_Win();
+            BS_Window = new BS_Win(logic_Lay);
             BS_Window.Show();
 
         }
@@ -110,7 +113,7 @@ namespace Opg2_v1.ViewModel
 
         void OpenWeigthCommandHandler()
         {
-            Weigth_Window = new Weigth_Win();
+            Weigth_Window = new Weigth_Win(logic_Lay);
             Weigth_Window.Show();
 
         }

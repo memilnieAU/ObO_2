@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Opg2_v1.Interface;
 using Opg2_v1.ViewModel;
 using System.ComponentModel;
+using Logic_tier;
 
 namespace Opg2_v1.View
 {
@@ -22,11 +23,12 @@ namespace Opg2_v1.View
     /// </summary>
     public partial class BP_Win : Window, ICloseable
     {
-        public BP_Win()
+       
+        public BP_Win(Logic logicRef)
         {
 
             InitializeComponent();
-            DataContext = new BP_Win_ViewModel();
+            DataContext = new BP_Win_ViewModel(logicRef);
         }
     }
 }

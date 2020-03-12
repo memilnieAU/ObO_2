@@ -15,6 +15,7 @@
             <ColumnDefinition Width="323*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.ColumnSpan="1">
+        <TextBox x:Name="TBx_WinCounter" Text="{Binding Path=WindowCount}" IsReadOnly="True"/>
             <Button x:Name="But_OpenBS_Win" Content="Blodsukker"  Command="{Binding CloseWindowCommandBS, Mode=OneWay}" CommandParameter="{Binding ElementName=HomeWindow}" />
             <Button x:Name="But_OpenBP_Win" Content="Blodtryk" Command="{Binding CloseWindowCommandBP, Mode=OneWay}" CommandParameter="{Binding ElementName=HomeWindow}" />
             <Button x:Name="But_OpenW_Win" Content="Vægt" Command="{Binding CloseWindowCommandWeigth, Mode=OneWay}" CommandParameter="{Binding ElementName=HomeWindow}"  />

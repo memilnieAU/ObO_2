@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 
+
 namespace Logic_tier
 {
     // This is NOT a Logic tier.
@@ -15,6 +16,8 @@ namespace Logic_tier
         private List<DTO_Weight> weightList_;
         private List<DTO_BSugar> bsList_;
         private List<DTO_BPressure> bpList_;
+
+        public int WindowCounter { get; set; }
 
         public Logic()
         {

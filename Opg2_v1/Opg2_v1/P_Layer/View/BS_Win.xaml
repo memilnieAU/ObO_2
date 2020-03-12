@@ -24,6 +24,6 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Button x:Name="Close" Content="Return" Command="{Binding CloseWindowCommandHP, Mode=OneWay}" CommandParameter="{Binding ElementName=BS_Window}" Grid.Column="3" Grid.Row="3"/>
-
+        <TextBox x:Name="TBx_WinCounter" Text="{Binding Path=WindowCount}" IsReadOnly="True"/>
     </Grid>
 </Window>

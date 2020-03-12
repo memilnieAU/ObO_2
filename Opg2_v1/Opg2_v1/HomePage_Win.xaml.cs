@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Opg2_v1.ViewModel;
 using Opg2_v1.Interface;
+using Logic_tier;
 
 namespace Opg2_v1
 {
@@ -26,10 +27,10 @@ namespace Opg2_v1
     /// </summary>
     public partial class HomePage_Win : Window, ICloseable
     {
-        public HomePage_Win()
+        public HomePage_Win(Logic logicRef)
         {
             InitializeComponent();
-            DataContext = new HomePage_Win_ViewModel();
+            DataContext = new HomePage_Win_ViewModel(logicRef);
         }
     }
 }
