@@ -27,7 +27,7 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="But_Close" Content="Return" Command="{Binding CloseWindowCommandHP, Mode=OneWay}" CommandParameter="{Binding ElementName=BP_Window}" Grid.Column="3" Grid.Row="" />
+        <Button x:Name="But_Close" Content="Return" Command="{Binding CloseWindowCommandHP, Mode=OneWay}" CommandParameter="{Binding ElementName=BP_Window}" Grid.Column="3" Grid.Row="0" />
         <TextBox x:Name="TBx_WinCounter" Text="{Binding Path=WindowCount}" IsReadOnly="True"/>
 
         <lvc:CartesianChart  Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="5" Series="{Binding BlodP}">
