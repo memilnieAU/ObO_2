@@ -39,6 +39,7 @@
                     </lvc:Axis.Separator>
                 </lvc:Axis>
             </lvc:CartesianChart.AxisX>
+            
         </lvc:CartesianChart> 
         
     </Grid>

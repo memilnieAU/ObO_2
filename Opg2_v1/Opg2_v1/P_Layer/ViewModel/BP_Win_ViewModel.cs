@@ -72,7 +72,7 @@ namespace Opg2_v1.ViewModel
         void grafLoad()
         { 
             BlodP = new SeriesCollection();
-            SystolicLine = new ColumnSeries {Title= "Systolic", Values = new ChartValues<int>() };
+            SystolicLine = new ColumnSeries { Title= "Systolic", Values = new ChartValues<int>() };
             DiastolicLine = new ColumnSeries { Title = "Diastolic", Values = new ChartValues<int>() };
             labelL = new List<string>();
             foreach (DTO_BPressure item in logic_Lay.getBPressureData(""))
