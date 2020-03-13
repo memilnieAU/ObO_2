@@ -14,12 +14,23 @@ using Logic_tier;
 using LiveCharts;
 using LiveCharts.Wpf;
 using DTO;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Opg2_v1.ViewModel
 {
-    class BP_Win_ViewModel
+    class BP_Win_ViewModel : INotifyPropertyChanged
     {
-        Logic logic_Lay;
+    // INotifyPropertyChanged Members
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected void Notify([CallerMemberName]string propName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+    }
+
+
+
+    Logic logic_Lay;
         public int WindowCount { get; set; }
         public BP_Win_ViewModel(Logic logicRef)
         {
@@ -65,6 +76,9 @@ namespace Opg2_v1.ViewModel
         #region Chart
         public SeriesCollection BlodP { get; set; }
         public String[] Labels { get; set; }
+       
+
+
         List<String> labelL;
 
         ColumnSeries SystolicLine;
@@ -72,8 +86,8 @@ namespace Opg2_v1.ViewModel
         void grafLoad()
         { 
             BlodP = new SeriesCollection();
-            SystolicLine = new ColumnSeries { Title= "Systolic", Values = new ChartValues<int>() };
-            DiastolicLine = new ColumnSeries { Title = "Diastolic", Values = new ChartValues<int>() };
+            SystolicLine = new ColumnSeries { Title = "Systolic" , MaxColumnWidth = 15, MaxWidth=25 , Values = new ChartValues<int>() };
+            DiastolicLine = new ColumnSeries {Title = "Diastolic" ,  MaxColumnWidth = 15 , Values = new ChartValues<int>() };
             labelL = new List<string>();
             foreach (DTO_BPressure item in logic_Lay.getBPressureData(""))
             {
@@ -88,6 +102,7 @@ namespace Opg2_v1.ViewModel
             BlodP.Add(SystolicLine);
             
 
+       
         }
         /*Series="{Binding BlodP}"
          * Grid.Column="0" Grid.Row="1" Grid.RowSpan="2"
