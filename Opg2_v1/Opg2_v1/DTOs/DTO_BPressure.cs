@@ -8,6 +8,7 @@ namespace DTO
 {
     public class DTO_BPressure
     {
+
         public int Systolic_ { get; set; }
         public int Diastolic_ { get; set; }
         public DateTime Date_ { get; set; }

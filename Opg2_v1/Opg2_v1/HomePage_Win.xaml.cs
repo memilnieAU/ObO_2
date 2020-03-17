@@ -27,8 +27,10 @@ namespace Opg2_v1
     /// </summary>
     public partial class HomePage_Win : Window, ICloseable
     {
+        public static int hp_Counter;
         public HomePage_Win(Logic logicRef)
         {
+            hp_Counter++;
             InitializeComponent();
             DataContext = new HomePage_Win_ViewModel(logicRef);
         }
