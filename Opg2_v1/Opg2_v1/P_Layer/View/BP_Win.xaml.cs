@@ -23,10 +23,10 @@ namespace Opg2_v1.View
     /// </summary>
     public partial class BP_Win : Window, ICloseable
     {
-        public static int hp_Counter;
+       
         public BP_Win(Logic logicRef)
         {
-            hp_Counter++;
+
             InitializeComponent();
             DataContext = new BP_Win_ViewModel(logicRef);
         }
