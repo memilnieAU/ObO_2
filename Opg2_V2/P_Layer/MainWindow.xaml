@@ -6,10 +6,8 @@
         xmlns:local="clr-namespace:P_Layer"
         xmlns:viewmodels="clr-namespace:P_Layer.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Window.DataContext>
-        <viewmodels:MainWindowViewModel/>
-    </Window.DataContext>
+        Title="MainWindow" Height="450" Width="800" >
+   
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="202*"/>
@@ -18,7 +16,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.ColumnSpan="1">
             <TextBox x:Name="TBx_WinCounter" Text="{Binding Path=WindowCount}" IsReadOnly="True"/>
-            <Button x:Name="But_OpenBS_Win" Content="Blodsukker"  Command="{Binding CalcBMICommand, Mode=OneTime}" />
+            <Button x:Name="But_OpenBS_Win" Content="Blodsukker"  Command="{Binding OpenLoginWindowCommand, Mode=OneTime}"  />
             <Button x:Name="But_OpenBP_Win" Content="Blodtryk" Command="{}" />
             <Button x:Name="But_OpenW_Win" Content="Vægt" Command="{}"  />
         </StackPanel>

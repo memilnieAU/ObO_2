@@ -6,32 +6,38 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using P_Layer.Views;
+using System.Windows;
 
 namespace P_Layer.ViewModels
 {
     public class MainWindowViewModel
     {
         LoginView loginWindow;
+        Window mainWindow;
 
-
-
+        public MainWindowViewModel(Window mainWindowRef)
+        {
+            mainWindow = mainWindowRef;
+        }
 
         #region Commands
 
-        ICommand _calcBMICommand;
-        public ICommand CalcBMICommand
+        ICommand openloginWindowCommand;
+        public ICommand OpenLoginWindowCommand
         {
-            get { return _calcBMICommand ?? (_calcBMICommand = new RelayCommand(CalcBMI, CalcBMICanExecute)); }
+            get { return openloginWindowCommand ?? (openloginWindowCommand = new RelayCommand(OpenLoginView, OpenLoginViewCanExecute)); }
         }
 
-        private void CalcBMI()
+        private void OpenLoginView()
         {
             loginWindow = new LoginView();
-            
+            //Application.Current.MainWindow.Hide();
+            mainWindow.Hide();
             loginWindow.ShowDialog();
+            mainWindow.Show();
         }
 
-        private bool CalcBMICanExecute()
+        private bool OpenLoginViewCanExecute()
         {
             return true;
         }

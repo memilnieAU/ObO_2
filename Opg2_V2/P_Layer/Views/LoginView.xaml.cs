@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using P_Layer.ViewModels;
 
 namespace P_Layer.Views
 {
@@ -22,6 +23,7 @@ namespace P_Layer.Views
         public LoginView()
         {
             InitializeComponent();
+            DataContext = new LoginViewModel(this);
         }
     }
 }
