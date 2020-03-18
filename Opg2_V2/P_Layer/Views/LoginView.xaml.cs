@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using P_Layer.ViewModels;
+using L_Layer;
 
 namespace P_Layer.Views
 {
@@ -20,10 +21,12 @@ namespace P_Layer.Views
     /// </summary>
     public partial class LoginView : Window
     {
-        public LoginView()
+        public LoginView(LogicStump logicStumpRef)
         {
             InitializeComponent();
-            DataContext = new LoginViewModel(this);
+            DataContext = new LoginViewModel(this, logicStumpRef);
+            
         }
     }
 }
+ 

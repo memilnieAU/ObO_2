@@ -104,5 +104,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DTOs\DTOs.csproj">
+      <Project>{4bb77a49-8014-46d6-9eff-eb539f3db3e2}</Project>
+      <Name>DTOs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\L_Layer\L_Layer.csproj">
+      <Project>{a0d44b6b-b5bb-403b-ac17-b1668222f69d}</Project>
+      <Name>L_Layer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

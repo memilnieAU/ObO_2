@@ -17,7 +17,7 @@
         <StackPanel Grid.ColumnSpan="1">
             <TextBox x:Name="TBx_WinCounter" Text="{Binding Path=WindowCount}" IsReadOnly="True"/>
             <Button x:Name="But_OpenBS_Win" Content="Blodsukker"  Command="{Binding OpenLoginWindowCommand, Mode=OneTime}"  />
-            <Button x:Name="But_OpenBP_Win" Content="Blodtryk" Command="{}" />
+            <Button x:Name="But_OpenBP_Win" Content="Blodtryk" Command="{Binding CloseLoginWindowCommand, Mode=OneTime}" />
             <Button x:Name="But_OpenW_Win" Content="Vægt" Command="{}"  />
         </StackPanel>
 

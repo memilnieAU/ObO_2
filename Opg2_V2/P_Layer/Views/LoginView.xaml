@@ -5,8 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P_Layer.Views"
         mc:Ignorable="d"
-        Title="LoginView" Height="450" Width="800">
-    <Grid>
-        
+        Title="LoginView" Height="450" Width="800"
+        FontSize="16">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="2">
+            <StackPanel x:Name="Stack_UserName" Orientation="Horizontal" Background="DimGray">
+                <Label x:Name="Lab_Username" Content="CPR: " />
+                <TextBox x:Name="TBx_UserName" Text="{Binding Path=Username}"  TextAlignment="Center" Margin="0,3,0,0" BorderThickness="0" Background="{Binding ElementName=Stack_UserName}" />
+            </StackPanel>
+            <StackPanel x:Name="Stack_PassWord" Orientation="Horizontal" Background="{Binding ElementName=Stack_UserName}">
+                <Label x:Name="Lab_PassWord" Content="Kode: " />
+                <Canvas>
+                    <TextBox x:Name="TBx_PassWord" Text="{Binding Path=Password,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Margin="0,3,0,0" BorderThickness="0" Foreground="Transparent" Background="Transparent" Opacity="0"/>
+                    
+                </Canvas>
+
+
+            </StackPanel>
+                    <TextBlock x:Name="TBk_PassWord"  Text="{Binding Path=Password}" TextTrimming="WordEllipsis"  TextAlignment="Center" Margin="0,3,0,0"  Background="{Binding ElementName=Stack_PassWord}"/>
+            <StackPanel x:Name="Stack_Button">
+                <Button x:Name="But_Login" Content="Login"  Command="{Binding LoginCommand, Mode=OneWay}"/>
+            </StackPanel>
+        </StackPanel>
+            
+            
     </Grid>
 </Window>
