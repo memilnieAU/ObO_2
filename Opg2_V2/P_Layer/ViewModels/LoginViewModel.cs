@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,16 +13,32 @@ using MyCommands;
 
 namespace P_Layer.ViewModels
 {
-    public class LoginViewModel
+    public class LoginViewModel: INotifyPropertyChanged
     {
         #region Variabler
         Window ThisWindow;
         LogicStump logicStump;
+        public bool LoginOk { get; set; }
+
+
         public String Username { get; set; }
-        public String Password { get; set; }
+       
+        private String password;
+
+        public String Password
+        {
+            get { return password; }
+            set
+            {
+                password = value;
+            }
+        }
+
+
+
         #endregion
         #region Ctor
-        public LoginViewModel(Window WindowRef,LogicStump logicStumpRef )
+        public LoginViewModel(Window WindowRef, Window MainWinRef,LogicStump logicStumpRef )
         {
             ThisWindow = WindowRef;
             logicStump = logicStumpRef;
@@ -43,19 +61,47 @@ namespace P_Layer.ViewModels
         {
             get { return loginCommand ?? (loginCommand = new RelayCommand(Login, LoginCanExecute)); }
         }
+        private String errorType;
+
+        public String ErrorType
+        {
+            get { return errorType; }
+            set { errorType = value; Notify(); }
+        }
+
+      
 
         private void Login()
         {
-            if (logicStump.checkLogin(Username, Password))
+            int LoginProces = logicStump.checkLogin(Username, Password);
+            switch (LoginProces)
             {
+                case 1:
+                    logicStump.LoginSucceeded = Username;
+                        ThisWindow.Close();
 
-            ThisWindow.Close();
+                    break;
+                case 2:
+                    ErrorType = "* Username forkert";
+                    break;
+                case 3:
+                    ErrorType = "* Password forkert";
+                    break;
+                
+                default:
+                    break;
+           
             }
         }
 
         private bool LoginCanExecute()
         {
-            if (Username.Length ==10 || Username.Length ==11)
+            if (Username[6]=='-' && Username.Length == 11)
+            {
+                return true;
+
+            }
+            else if (!Username.Contains("-") && Username.Length ==10)
             {
                 return true;
 
@@ -65,5 +111,12 @@ namespace P_Layer.ViewModels
         }
 
         #endregion
+
+        // INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void Notify([CallerMemberName]string propName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
     }
 }

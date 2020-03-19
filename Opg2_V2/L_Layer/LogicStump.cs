@@ -12,6 +12,7 @@ namespace L_Layer
     // Test login is: social security number "999999-0000" and password "testpw"
     public class LogicStump
     {
+        public String LoginSucceeded { get; set; }  //Husker om man har logget ind
         #region Variabler
         private List<DTO_Weight> weightList_;
         private List<DTO_BSugar> bsList_;
@@ -31,9 +32,19 @@ namespace L_Layer
         #endregion
 
         #region LoginTest
-        public bool checkLogin( String socSecNb, String pw )
+        public int checkLogin( String socSecNb, String pw )
         {
-            return (socSecNb == "999999-0000" && pw == "testpw");
+            if (socSecNb == "999999-0000" && pw == "testpw"|| socSecNb == "9999990000" && pw == "testpw")
+            {
+             return 1;
+
+            }
+            else if (socSecNb == "999999-0000" || socSecNb == "9999990000")
+            {
+                return 3;  //Så er pw forkert
+            }
+           
+            return 2;
         }
         #endregion
 

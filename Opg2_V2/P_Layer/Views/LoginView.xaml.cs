@@ -21,10 +21,19 @@ namespace P_Layer.Views
     /// </summary>
     public partial class LoginView : Window
     {
-        public LoginView(LogicStump logicStumpRef)
+        LoginViewModel ViewModel;
+        Window MainWinRef;
+        public LoginView(Window mainWinRef , LogicStump logicStumpRef)
         {
+            MainWinRef = mainWinRef;
+            ViewModel = new LoginViewModel(this, mainWinRef, logicStumpRef);
             InitializeComponent();
-            DataContext = new LoginViewModel(this, logicStumpRef);
+            DataContext = ViewModel;
+            
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
             
         }
     }

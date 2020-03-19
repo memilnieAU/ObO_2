@@ -14,7 +14,7 @@ namespace P_Layer.ViewModels
 {
     public class MainWindowViewModel
     {
-        Window mainWindow;  //En referance til eget view
+        Window thisMainWindow;  //En referance til eget view
         LoginView loginWindow;  //En ref hvis der skal åbnes andre views
 
         LogicStump logicStump;
@@ -22,7 +22,7 @@ namespace P_Layer.ViewModels
 
         public MainWindowViewModel(Window mainWindowRef)
         {
-            mainWindow = mainWindowRef;
+            thisMainWindow = mainWindowRef;
             logicStump = new LogicStump();
             if (OpenLoginViewCanExecute())  //Validering på om der er lavet et vindue tidligere
             {
@@ -40,11 +40,18 @@ namespace P_Layer.ViewModels
 
         private void OpenLoginView()
         {
-            loginWindow = new LoginView(logicStump);
+            loginWindow = new LoginView(thisMainWindow,logicStump);
             //Application.Current.MainWindow.Hide();
-            mainWindow.Hide();
+            thisMainWindow.Hide();
             loginWindow.ShowDialog();
-            mainWindow.Show();
+            if (!String.IsNullOrWhiteSpace(logicStump.LoginSucceeded))
+            {
+            thisMainWindow.Show();
+            }
+            else
+            {
+            thisMainWindow.Close();
+            }
         }
 
         private bool OpenLoginViewCanExecute()
