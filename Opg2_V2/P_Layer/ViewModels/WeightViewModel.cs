@@ -25,6 +25,7 @@ namespace P_Layer.ViewModels
         }
         #region Chart
         public SeriesCollection WeigthGraf { get; set; }
+
         public String[] Labels { get; set; }
 
         public AxesCollection AxisYCollection { get; set; }
@@ -37,8 +38,8 @@ namespace P_Layer.ViewModels
         void grafLoad()
         {
             WeigthGraf = new SeriesCollection();
-            WeigthLine = new LineSeries { Title = "Vægt", Values = new ChartValues<double>(), ScalesYAt = 0,Foreground = Brushes.Red };
-            BmiLine = new LineSeries { Title = "Bmi", Values = new ChartValues<int>(), ScalesYAt = 1, Foreground = Brushes.Blue };
+            WeigthLine = new LineSeries {Fill = Brushes.Transparent,  Title = "Vægt", Values = new ChartValues<double>(), ScalesYAt = 0,Foreground = Brushes.Red };
+            BmiLine = new LineSeries { Fill = Brushes.Transparent , Title = "Bmi", Values = new ChartValues<int>(), ScalesYAt = 1, Foreground = Brushes.Blue };
             labelL = new List<string>();
             foreach (DTO_Weight item in logicStump.getWeightAndBMIData(""))
             {
@@ -60,17 +61,17 @@ namespace P_Layer.ViewModels
                 {
                     StrokeThickness = 1,
                     StrokeDashArray = new System.Windows.Media.DoubleCollection(2),
-                   Step = 1,  Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(255,0,0))
+                   Step = 1 
                
                      },
                     Foreground= Brushes.Red } ,
                 new Axis {
                      Separator = new Separator
                 {
-                         Step = 1,
+                         Step = 0.5,
                    StrokeThickness = 1,
                    StrokeDashArray = new System.Windows.Media.DoubleCollection(3),
-                   Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(0,0,255))
+                   Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(0,0,0))
                 },
                     Foreground = Brushes.Blue  }
             };

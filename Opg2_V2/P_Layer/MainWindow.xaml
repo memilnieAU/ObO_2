@@ -23,9 +23,9 @@
                 <StackPanel >
                     <Button Width="100" Height="30" x:Name="But_OpenBS_Win" Content="Blodsukker"  Command="{Binding OpenBlodsugerWindowCommand, Mode=OneTime}"  />
                     <Button Width="100"  Height="30" x:Name="But_OpenBP_Win" Content="Blodtryk"  Command="{Binding OpenBlodPWindowCommand, Mode=OneTime}"  />
-                    <Button Width="100"  Height="30" x:Name="But_Logout" Content="Log ud" Command="{Binding CloseLoginWindowCommand, Mode=OneTime}" />
 
                     <Button Width="100"  Height="30" x:Name="But_OpenW_Win" Content="Vægt" Command="{Binding OpenWeightWindowCommand, Mode=OneTime}"  />
+                    <Button Width="100"  Height="30" x:Name="But_Logout" Content="Log ud" Command="{Binding CloseLoginWindowCommand, Mode=OneTime}" />
 
 
                 </StackPanel>

@@ -11,12 +11,12 @@
         FontSize="16"
         Background="LightGray">
     <Grid>
-        <lvc:CartesianChart FontSize="16" Series="{Binding WeigthGraf}" LegendLocation="Left" AxisY="{Binding AxisYCollection}">
+        <lvc:CartesianChart  Series="{Binding WeigthGraf}" LegendLocation="Left" AxisY="{Binding AxisYCollection}">
             <lvc:CartesianChart.AxisX>
 
                 <lvc:Axis  Title="Date" FontSize="16" LabelsRotation="-15" Labels="{Binding Labels}" Foreground="#FF1D0000" >
                     <lvc:Axis.Separator>
-                        <lvc:Separator IsEnabled="False" Step="1">
+                        <lvc:Separator IsEnabled="True" Step="1" StrokeThickness="1.5" Stroke="Gray">
                         </lvc:Separator>
                     </lvc:Axis.Separator>
                 </lvc:Axis>
