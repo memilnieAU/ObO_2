@@ -21,16 +21,16 @@ namespace Opg2_v1.ViewModel
 {
     class BP_Win_ViewModel : INotifyPropertyChanged
     {
-    // INotifyPropertyChanged Members
-    public event PropertyChangedEventHandler PropertyChanged;
-    protected void Notify([CallerMemberName]string propName = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
-    }
+        // INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void Notify([CallerMemberName]string propName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
 
 
 
-    Logic logic_Lay;
+        Logic logic_Lay;
         public int WindowCount { get; set; }
         public BP_Win_ViewModel(Logic logicRef)
         {
@@ -76,7 +76,7 @@ namespace Opg2_v1.ViewModel
         #region Chart
         public SeriesCollection BlodP { get; set; }
         public String[] Labels { get; set; }
-       
+
 
 
         List<String> labelL;
@@ -84,25 +84,25 @@ namespace Opg2_v1.ViewModel
         ColumnSeries SystolicLine;
         ColumnSeries DiastolicLine;
         void grafLoad()
-        { 
+        {
             BlodP = new SeriesCollection();
-            SystolicLine = new ColumnSeries { Title = "Systolic" , MaxColumnWidth = 15, MaxWidth=25 , Values = new ChartValues<int>() };
-            DiastolicLine = new ColumnSeries {Title = "Diastolic" ,  MaxColumnWidth = 15 , Values = new ChartValues<int>() };
+            SystolicLine = new ColumnSeries { Title = "Systolic", MaxColumnWidth = 15, MaxWidth = 25, Values = new ChartValues<int>() };
+            DiastolicLine = new ColumnSeries { Title = "Diastolic", MaxColumnWidth = 15, Values = new ChartValues<int>() };
             labelL = new List<string>();
             foreach (DTO_BPressure item in logic_Lay.getBPressureData(""))
             {
                 SystolicLine.Values.Add(item.Systolic_);
                 DiastolicLine.Values.Add(item.Diastolic_);
-                labelL.Add(item.Date_.ToString().Substring(0,16));
+                labelL.Add(item.Date_.ToString().Substring(0, 16));
             }
-           
-             Labels = labelL.ToArray();
-         
+
+            Labels = labelL.ToArray();
+
             BlodP.Add(DiastolicLine);
             BlodP.Add(SystolicLine);
-            
 
-       
+
+
         }
         /*Series="{Binding BlodP}"
          * Grid.Column="0" Grid.Row="1" Grid.RowSpan="2"

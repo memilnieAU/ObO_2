@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="LoginView" Height="200" Width="300"
         FontSize="16" Closing="Window_Closing" 
-          
+          Background="LightGray"
           >
     <Grid >
         

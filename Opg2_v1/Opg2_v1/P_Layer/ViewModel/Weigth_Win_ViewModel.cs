@@ -64,6 +64,7 @@ namespace Opg2_v1.ViewModel
         public AxesCollection AxisYCollection { get; set; }
 
 
+
         List<String> labelL;
 
         LineSeries WeigthLine;

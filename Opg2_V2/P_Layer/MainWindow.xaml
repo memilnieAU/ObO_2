@@ -6,20 +6,43 @@
         xmlns:local="clr-namespace:P_Layer"
         xmlns:viewmodels="clr-namespace:P_Layer.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" >
-   
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="202*"/>
-            <ColumnDefinition Width="271*"/>
-            <ColumnDefinition Width="323*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.ColumnSpan="1">
-            <TextBox x:Name="TBx_WinCounter" Text="{Binding Path=WindowCount}" IsReadOnly="True"/>
-            <Button x:Name="But_OpenBS_Win" Content="Blodsukker"  Command="{Binding OpenLoginWindowCommand, Mode=OneTime}"  />
-            <Button x:Name="But_OpenBP_Win" Content="Blodtryk" Command="{Binding CloseLoginWindowCommand, Mode=OneTime}" />
-            <Button x:Name="But_OpenW_Win" Content="Vægt" Command="{}"  />
-        </StackPanel>
+        Title="MainWindow" Height="200" Width="300" MinWidth="220" MinHeight="180"
+        FontSize="16"
+        Background="LightGray">
+
+    <Grid  >
+
+        <!--Button StackPanel-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="2" Grid.Column="0" BorderBrush='Gray' VerticalAlignment="Center">
+                <StackPanel >
+                    <Button Width="100" Height="30" x:Name="But_OpenBS_Win" Content="Blodsukker"  Command="{Binding OpenBlodsugerWindowCommand, Mode=OneTime}"  />
+                    <Button Width="100"  Height="30" x:Name="But_OpenBP_Win" Content="Blodtryk"  Command="{Binding OpenBlodPWindowCommand, Mode=OneTime}"  />
+                    <Button Width="100"  Height="30" x:Name="But_Logout" Content="Log ud" Command="{Binding CloseLoginWindowCommand, Mode=OneTime}" />
+
+                    <Button Width="100"  Height="30" x:Name="But_OpenW_Win" Content="Vægt" Command="{Binding OpenWeightWindowCommand, Mode=OneTime}"  />
+
+
+                </StackPanel>
+            </Border>
+            <Border Background="White" BorderThickness="2" Grid.Column="1" BorderBrush='Gray' Margin="3"  VerticalAlignment="Center">
+
+                <StackPanel >
+                    <RadioButton Width="90"  Height="30" Margin="10,0,0,0" VerticalContentAlignment="Center" GroupName="UgeInterval" Content="1 uge" IsChecked="{Binding Path=OneWeekChecked}" />
+                    <RadioButton Width="90"  Height="30" Margin="10,0,0,0" VerticalContentAlignment="Center" GroupName="UgeInterval" Content="2 uger" IsChecked="{Binding Path=TwoWeekChecked}" />
+                    <RadioButton Width="90"  Height="30" Margin="10,0,0,0" VerticalContentAlignment="Center" GroupName="UgeInterval" Content="4 uger" IsChecked="{Binding Path=FourWeekChecked}"/>
+                    <Button Width="100"  Height="30" x:Name="But_SendData" Content="{Binding Path=DataIsSent}" Command="{Binding SendDataCommand, Mode=OneTime}" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+
+
 
     </Grid>
 </Window>
