@@ -22,13 +22,12 @@ namespace P_Layer.Views
     public partial class LoginView : Window
     {
         LoginViewModel ViewModel;
-        Window MainWinRef;
-        public LoginView(Window mainWinRef, LogicStump logicStumpRef)
+        
+        public LoginView(LoginViewModel viewModel)
         {
-            MainWinRef = mainWinRef;
-            ViewModel = new LoginViewModel(this, MainWinRef, logicStumpRef);
-            InitializeComponent();
+            ViewModel = viewModel;
             DataContext = ViewModel;
+           InitializeComponent();
             
 
         }

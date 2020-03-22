@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using P_Layer.Views;
 
 
 namespace P_Layer.ViewModels
@@ -19,14 +20,15 @@ namespace P_Layer.ViewModels
     {
         Window ThisWindow;
         LogicStump logicStump;
-        Window MainWindow;
-        public WeightViewModel(Window WindowRef, Window MainWinRef, LogicStump logicStumpRef)
+        MainWindowViewModel MainWindow;
+        public WeightViewModel(MainWindowViewModel MainWinRef, LogicStump logicStumpRef)
         {
-            ThisWindow = WindowRef;
+            ThisWindow = new WeightView(this);
+           
             logicStump = logicStumpRef;
             MainWindow = MainWinRef;
-            ThisWindow.Top = MainWindow.Top;
-            ThisWindow.Left = MainWindow.Left;
+            ThisWindow.Top = MainWindow.thisMainWindow.Top;
+            ThisWindow.Left = MainWindow.thisMainWindow.Left;
             GrafLoad();
         }
         #region Chart
@@ -99,8 +101,9 @@ namespace P_Layer.ViewModels
 
         public void CloseThisWindowHandler()
         {
+            MainWindow.OpenOrClose();
             ThisWindow.Close();
-            
+
         }
 
         public bool CloseThisWindowHandlerCanExecute()

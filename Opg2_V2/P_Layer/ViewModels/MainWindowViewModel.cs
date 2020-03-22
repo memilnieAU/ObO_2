@@ -31,11 +31,11 @@ namespace P_Layer.ViewModels
         }
         #endregion
 
-        Window thisMainWindow;  //En referance til eget view
-        LoginView loginWindow;  //En ref hvis der skal åbnes andre views
+        public Window thisMainWindow;  //En referance til eget view
+        LoginViewModel loginWindow;  //En ref hvis der skal åbnes andre views
         BlodSView blodSWindow;
         BlodPView blodPWindow;
-        WeightView weigtWindow;
+        WeightViewModel weigtWindow;
         LogicStump logicStump;
 
 
@@ -142,7 +142,18 @@ namespace P_Layer.ViewModels
         }
 
         #endregion
-
+        public void OpenOrClose()
+        {
+          
+            if (!String.IsNullOrWhiteSpace(logicStump.LoginSucceeded))
+            {
+                thisMainWindow.Show();
+            }
+            if (String.IsNullOrWhiteSpace(logicStump.LoginSucceeded))
+            {
+                thisMainWindow.Close();
+            }
+        }
 
         #region Open login window
 
@@ -154,18 +165,11 @@ namespace P_Layer.ViewModels
 
         private void OpenLoginViewHandler()
         {
-            loginWindow = new LoginView(thisMainWindow, logicStump);
-            //Application.Current.MainWindow.Hide();
             thisMainWindow.Hide();
-            loginWindow.ShowDialog();
-            if (!String.IsNullOrWhiteSpace(logicStump.LoginSucceeded))
-            {
-                thisMainWindow.Show();
-            }
-            if(String.IsNullOrWhiteSpace(logicStump.LoginSucceeded))
-            {
-                thisMainWindow.Close();
-            }
+            loginWindow = new LoginViewModel(this, logicStump);
+            //Application.Current.MainWindow.Hide();
+            //loginWindow.ShowDialog();
+          
         }
 
         private bool OpenLoginViewHandlerCanExecute()
@@ -258,19 +262,10 @@ namespace P_Layer.ViewModels
 
         public void OpenWeightWindowHandler()
         {
-            weigtWindow = new WeightView(thisMainWindow, logicStump);
+            weigtWindow = new WeightViewModel( this, logicStump);
             //Application.Current.MainWindow.Hide();
             thisMainWindow.Hide();
-            weigtWindow.ShowDialog();
-            weigtWindow = null;
-            if (!String.IsNullOrWhiteSpace(logicStump.LoginSucceeded))
-            {
-                thisMainWindow.Show();
-            }
-            else
-            {
-                thisMainWindow.Close();
-            }
+            
         }
 
         public bool OpenWeightWindowHandlerCanExecute()

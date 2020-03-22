@@ -10,6 +10,7 @@ using System.Windows.Input;
 using DTOs;
 using L_Layer;
 using MyCommands;
+using P_Layer.Views;
 
 namespace P_Layer.ViewModels
 {
@@ -17,7 +18,7 @@ namespace P_Layer.ViewModels
     {
         #region Variabler
         Window ThisWindow;
-        Window MainWindow;
+        MainWindowViewModel MainWindow;
         LogicStump logicStump;
         public bool LoginOk { get; set; }
 
@@ -39,16 +40,17 @@ namespace P_Layer.ViewModels
 
         #endregion
         #region Ctor
-        public LoginViewModel(Window WindowRef, Window MainWinRef, LogicStump logicStumpRef)
+        public LoginViewModel(MainWindowViewModel MainWinRef, LogicStump logicStumpRef)
         {
-            ThisWindow = WindowRef;
-            logicStump = logicStumpRef;
             Username = "999999-0000";
             Password = "testpw";
-            MainWindow = MainWinRef;
-            WindowRef.Top = MainWindow.Top;
-            WindowRef.Left = MainWindow.Left;
             
+            ThisWindow = new LoginView(this);
+            ThisWindow.Show();
+            logicStump = logicStumpRef;
+            MainWindow = MainWinRef;
+            ThisWindow.Top = MainWindow.thisMainWindow.Top;
+            ThisWindow.Left = MainWindow.thisMainWindow.Left;
 
         }
 
@@ -84,6 +86,7 @@ namespace P_Layer.ViewModels
             {
                 case 1:
                     logicStump.LoginSucceeded = Username;
+                    MainWindow.OpenOrClose();
                     ThisWindow.Close();
 
                     break;
@@ -136,7 +139,9 @@ namespace P_Layer.ViewModels
             {
                 
                 logicStump.LoginSucceeded = "";
+                MainWindow.OpenOrClose();
                 ThisWindow.Close();
+                
                 
             }
         }
