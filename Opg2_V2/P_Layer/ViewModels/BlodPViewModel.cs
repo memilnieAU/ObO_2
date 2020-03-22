@@ -2,12 +2,14 @@
 using L_Layer;
 using LiveCharts;
 using LiveCharts.Wpf;
+using MyCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace P_Layer.ViewModels
 {
@@ -16,11 +18,15 @@ namespace P_Layer.ViewModels
     {
         Window ThisWindow;
         LogicStump logicStump;
+        Window MainWindow;
         public BlodPViewModel(Window WindowRef, Window MainWinRef, LogicStump logicStumpRef)
         {
             ThisWindow = WindowRef;
             logicStump = logicStumpRef;
-            grafLoad();
+            MainWindow = MainWinRef;
+            ThisWindow.Top = MainWindow.Top;
+            ThisWindow.Left = MainWindow.Left;
+            GrafLoad();
         }
 
         #region Chart
@@ -33,13 +39,13 @@ namespace P_Layer.ViewModels
 
         ColumnSeries SystolicLine;
         ColumnSeries DiastolicLine;
-        void grafLoad()
+        void GrafLoad()
         {
             BlodP = new SeriesCollection();
-            SystolicLine = new ColumnSeries { Title = "Systolic", MaxColumnWidth = 15, MaxWidth = 25, Values = new ChartValues<int>() };
-            DiastolicLine = new ColumnSeries { Title = "Diastolic", MaxColumnWidth = 15, Values = new ChartValues<int>() };
+            SystolicLine = new ColumnSeries { Title = "Systoliske tryk", MaxColumnWidth = 15, MaxWidth = 25, Values = new ChartValues<int>() };
+            DiastolicLine = new ColumnSeries { Title = "Diastoliske tryk", MaxColumnWidth = 15, Values = new ChartValues<int>() };
             labelL = new List<string>();
-            foreach (DTO_BPressure item in logicStump.getBPressureData(""))
+            foreach (DTO_BPressure item in logicStump.GetBPressureData(""))
             {
                 SystolicLine.Values.Add(item.Systolic_);
                 DiastolicLine.Values.Add(item.Diastolic_);
@@ -57,6 +63,31 @@ namespace P_Layer.ViewModels
         /*Series="{Binding BlodP}"
          * Grid.Column="0" Grid.Row="1" Grid.RowSpan="2"
          * */
+        #endregion
+
+        #region Close this Window
+
+        ICommand closeThisWindowCommand;
+
+
+        public ICommand CloseThisWindowCommand
+        {
+            get { return closeThisWindowCommand ?? (closeThisWindowCommand = new RelayCommand(CloseThisWindowHandler, CloseThisWindowHandlerCanExecute)); }
+        }
+
+        public void CloseThisWindowHandler()
+        {
+            ThisWindow.Close();
+
+        }
+
+        public bool CloseThisWindowHandlerCanExecute()
+        {
+
+            return true;
+
+        }
+
         #endregion
     }
 }

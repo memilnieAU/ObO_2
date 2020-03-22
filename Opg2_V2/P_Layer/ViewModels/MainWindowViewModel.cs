@@ -42,10 +42,11 @@ namespace P_Layer.ViewModels
         public MainWindowViewModel(Window mainWindowRef)
         {
             thisMainWindow = mainWindowRef;
+            thisMainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             logicStump = new LogicStump();
-            if (OpenLoginViewCanExecute())  //Validering på om der er lavet et vindue tidligere
+            if (OpenLoginViewHandlerCanExecute())  //Validering på om der er lavet et vindue tidligere
             {
-                OpenLoginView();            //Åbner et nyt login vindue
+                OpenLoginViewHandler();            //Åbner et nyt login vindue
             }
         }
 
@@ -105,10 +106,10 @@ namespace P_Layer.ViewModels
         ICommand sendDataCommand;
         public ICommand SendDataCommand
         {
-            get { return sendDataCommand ?? (sendDataCommand = new RelayCommand(SendDataCommandHandler, SendDataCommandHandlerCanExecute)); }
+            get { return sendDataCommand ?? (sendDataCommand = new RelayCommand(SendDataHandler, SendDataHandlerCanExecute)); }
         }
 
-        private void SendDataCommandHandler()
+        public void SendDataHandler()
         {
             if (OneWeekChecked)
             {
@@ -123,11 +124,11 @@ namespace P_Layer.ViewModels
                 FourWeekChecked = false;
             }
             
-                DataIsSent = "Periode sent";
+                DataIsSent = "Periode sendt";
         }
        
         
-        private bool SendDataCommandHandlerCanExecute()
+        public bool SendDataHandlerCanExecute()
         {
             
 
@@ -135,7 +136,7 @@ namespace P_Layer.ViewModels
             {
                 return false;
             }
-            DataIsSent = "Send";
+            DataIsSent = "[S]  Send";
             return true;
 
         }
@@ -148,10 +149,10 @@ namespace P_Layer.ViewModels
         ICommand openloginWindowCommand;
         public ICommand OpenLoginWindowCommand
         {
-            get { return openloginWindowCommand ?? (openloginWindowCommand = new RelayCommand(OpenLoginView, OpenLoginViewCanExecute)); }
+            get { return openloginWindowCommand ?? (openloginWindowCommand = new RelayCommand(OpenLoginViewHandler, OpenLoginViewHandlerCanExecute)); }
         }
 
-        private void OpenLoginView()
+        private void OpenLoginViewHandler()
         {
             loginWindow = new LoginView(thisMainWindow, logicStump);
             //Application.Current.MainWindow.Hide();
@@ -167,7 +168,7 @@ namespace P_Layer.ViewModels
             }
         }
 
-        private bool OpenLoginViewCanExecute()
+        private bool OpenLoginViewHandlerCanExecute()
         {
             if (loginWindow == null)
             {
@@ -182,15 +183,16 @@ namespace P_Layer.ViewModels
         ICommand openBlodsugerWindowCommand;
         public ICommand OpenBlodsugerWindowCommand
         {
-            get { return openBlodsugerWindowCommand ?? (openBlodsugerWindowCommand = new RelayCommand(OpenBlodSView, OpenBlodSViewCanExecute)); }
+            get { return openBlodsugerWindowCommand ?? (openBlodsugerWindowCommand = new RelayCommand(OpenBlodsugerWindowHandler, OpenBlodsugerWindowHandlerCanExecute)); }
         }
 
-        private void OpenBlodSView()
+        public void OpenBlodsugerWindowHandler()
         {
             blodSWindow = new BlodSView(thisMainWindow, logicStump);
             //Application.Current.MainWindow.Hide();
             thisMainWindow.Hide();
             blodSWindow.ShowDialog();
+            blodSWindow = null;
             if (!String.IsNullOrWhiteSpace(logicStump.LoginSucceeded))
             {
                 thisMainWindow.Show();
@@ -201,7 +203,7 @@ namespace P_Layer.ViewModels
             }
         }
 
-        private bool OpenBlodSViewCanExecute()
+        public bool OpenBlodsugerWindowHandlerCanExecute()
         {
             if (blodSWindow == null)
             {
@@ -216,15 +218,16 @@ namespace P_Layer.ViewModels
         ICommand openBlodPWindowCommand;
         public ICommand OpenBlodPWindowCommand
         {
-            get { return openBlodPWindowCommand ?? (openBlodPWindowCommand = new RelayCommand(OpenBlodPView, OpenBlodPViewCanExecute)); }
+            get { return openBlodPWindowCommand ?? (openBlodPWindowCommand = new RelayCommand(OpenBlodPWindowHandler, OpenBlodPWindowHandlerCanExecute)); }
         }
 
-        private void OpenBlodPView()
+        public void OpenBlodPWindowHandler()
         {
             blodPWindow = new BlodPView(thisMainWindow, logicStump);
             //Application.Current.MainWindow.Hide();
             thisMainWindow.Hide();
             blodPWindow.ShowDialog();
+            blodPWindow = null;
             if (!String.IsNullOrWhiteSpace(logicStump.LoginSucceeded))
             {
                 thisMainWindow.Show();
@@ -235,7 +238,7 @@ namespace P_Layer.ViewModels
             }
         }
 
-        private bool OpenBlodPViewCanExecute()
+        public bool OpenBlodPWindowHandlerCanExecute()
         {
             if (blodPWindow == null)
             {
@@ -250,15 +253,16 @@ namespace P_Layer.ViewModels
         ICommand openWeightWindowCommand;
         public ICommand OpenWeightWindowCommand
         {
-            get { return openWeightWindowCommand ?? (openWeightWindowCommand = new RelayCommand(OpenWeightView, OpenWeightViewCanExecute)); }
+            get { return openWeightWindowCommand ?? (openWeightWindowCommand = new RelayCommand(OpenWeightWindowHandler, OpenWeightWindowHandlerCanExecute)); }
         }
 
-        private void OpenWeightView()
+        public void OpenWeightWindowHandler()
         {
             weigtWindow = new WeightView(thisMainWindow, logicStump);
             //Application.Current.MainWindow.Hide();
             thisMainWindow.Hide();
             weigtWindow.ShowDialog();
+            weigtWindow = null;
             if (!String.IsNullOrWhiteSpace(logicStump.LoginSucceeded))
             {
                 thisMainWindow.Show();
@@ -269,7 +273,7 @@ namespace P_Layer.ViewModels
             }
         }
 
-        private bool OpenWeightViewCanExecute()
+        public bool OpenWeightWindowHandlerCanExecute()
         {
             if (weigtWindow == null)
             {
@@ -284,22 +288,22 @@ namespace P_Layer.ViewModels
         ICommand closeloginWindowCommand;
         public ICommand CloseLoginWindowCommand
         {
-            get { return closeloginWindowCommand ?? (closeloginWindowCommand = new RelayCommand(CloseLoginView, CloseLoginViewCanExecute)); }
+            get { return closeloginWindowCommand ?? (closeloginWindowCommand = new RelayCommand(CloseLoginViewCommandHandler, CloseLoginViewHandlerCanExecute)); }
         }
 
-        private void CloseLoginView()
+        public void CloseLoginViewCommandHandler()
         {
             loginWindow = null;
             blodPWindow = null;
             blodSWindow = null;
             weigtWindow = null;
-            if (OpenLoginViewCanExecute())  //Validering på om der er lavet et vindue tidligere
+            if (OpenLoginViewHandlerCanExecute())  //Validering på om der er lavet et vindue tidligere
             {
-                OpenLoginView();            //Åbner et nyt login vindue
+                OpenLoginViewHandler();            //Åbner et nyt login vindue
             }
         }
 
-        private bool CloseLoginViewCanExecute()
+        public bool CloseLoginViewHandlerCanExecute()
         {
             if (loginWindow != null)
             {

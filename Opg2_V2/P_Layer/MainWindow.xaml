@@ -6,14 +6,15 @@
         xmlns:local="clr-namespace:P_Layer"
         xmlns:viewmodels="clr-namespace:P_Layer.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="300" MinWidth="220" MinHeight="180"
+        Title="Menu" Height="200" Width="400" MinWidth="220" MinHeight="180"
         FontSize="16"
-        Background="LightGray">
+        Background="LightGray" PreviewKeyDown="Tastatur_Tryk">
 
     <Grid  >
 
-        <!--Button StackPanel-->
-        <Grid>
+      
+        <Grid >
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -21,11 +22,11 @@
             </Grid.ColumnDefinitions>
             <Border BorderThickness="2" Grid.Column="0" BorderBrush='Gray' VerticalAlignment="Center">
                 <StackPanel >
-                    <Button Width="100" Height="30" x:Name="But_OpenBS_Win" Content="Blodsukker"  Command="{Binding OpenBlodsugerWindowCommand, Mode=OneTime}"  />
-                    <Button Width="100"  Height="30" x:Name="But_OpenBP_Win" Content="Blodtryk"  Command="{Binding OpenBlodPWindowCommand, Mode=OneTime}"  />
+                    <Button Width="200" Height="30" x:Name="But_OpenBS_Win" Content="  [F1] Blodsukker" HorizontalContentAlignment="Left" Command="{Binding OpenBlodsugerWindowCommand, Mode=OneTime}"  />
+                    <Button Width="200"  Height="30" x:Name="But_OpenBP_Win" Content="  [F2] Blodtryk" HorizontalContentAlignment="Left" Command="{Binding OpenBlodPWindowCommand, Mode=OneTime}"  />
 
-                    <Button Width="100"  Height="30" x:Name="But_OpenW_Win" Content="Vægt" Command="{Binding OpenWeightWindowCommand, Mode=OneTime}"  />
-                    <Button Width="100"  Height="30" x:Name="But_Logout" Content="Log ud" Command="{Binding CloseLoginWindowCommand, Mode=OneTime}" />
+                    <Button Width="200"  Height="30" x:Name="But_OpenW_Win" Content="  [F3] Vægt og BMI" HorizontalContentAlignment="Left" Command="{Binding OpenWeightWindowCommand, Mode=OneTime}"  />
+                    <Button Width="200"  Height="30" x:Name="But_Logout" Content="  [Esc] Log ud" HorizontalContentAlignment="Left" Command="{Binding CloseLoginWindowCommand, Mode=OneTime}" />
 
 
                 </StackPanel>
@@ -33,10 +34,10 @@
             <Border Background="White" BorderThickness="2" Grid.Column="1" BorderBrush='Gray' Margin="3"  VerticalAlignment="Center">
 
                 <StackPanel >
-                    <RadioButton Width="90"  Height="30" Margin="10,0,0,0" VerticalContentAlignment="Center" GroupName="UgeInterval" Content="1 uge" IsChecked="{Binding Path=OneWeekChecked}" />
-                    <RadioButton Width="90"  Height="30" Margin="10,0,0,0" VerticalContentAlignment="Center" GroupName="UgeInterval" Content="2 uger" IsChecked="{Binding Path=TwoWeekChecked}" />
-                    <RadioButton Width="90"  Height="30" Margin="10,0,0,0" VerticalContentAlignment="Center" GroupName="UgeInterval" Content="4 uger" IsChecked="{Binding Path=FourWeekChecked}"/>
-                    <Button Width="100"  Height="30" x:Name="But_SendData" Content="{Binding Path=DataIsSent}" Command="{Binding SendDataCommand, Mode=OneTime}" />
+                    <RadioButton x:Name="rad_1Week" Width="90"  Height="30" Margin="10,0,0,0" VerticalContentAlignment="Center" GroupName="UgeInterval" Content="[1] 1 uge" IsChecked="{Binding Path=OneWeekChecked}" />
+                    <RadioButton x:Name="rad_2Week" Width="90"  Height="30" Margin="10,0,0,0" VerticalContentAlignment="Center" GroupName="UgeInterval" Content="[2] 2 uger" IsChecked="{Binding Path=TwoWeekChecked}" />
+                    <RadioButton x:Name="rad_4Week" Width="90"  Height="30" Margin="10,0,0,0" VerticalContentAlignment="Center" GroupName="UgeInterval" Content="[4] 4 uger" IsChecked="{Binding Path=FourWeekChecked}"/>
+                    <Button  Width="100"  Height="30" x:Name="But_SendData" Content="{Binding Path=DataIsSent}" Command="{Binding SendDataCommand, Mode=OneTime}" />
                 </StackPanel>
             </Border>
         </Grid>

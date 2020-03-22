@@ -6,13 +6,19 @@
         xmlns:local="clr-namespace:P_Layer.Views"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="BlodPView" Height="450" Width="800"
+        Title="Blodtryk" Height="450" Width="800"
         FontSize="16"
-        Background="LightGray">
+        Background="LightGray"  PreviewKeyDown="Tastatur_Tryk">
     <Grid>
-        <lvc:CartesianChart  Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="5" Series="{Binding BlodP}" LegendLocation="Left" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="325*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Blodtryk" Grid.Row="0" HorizontalAlignment="Center" FontSize="26"/>
+        <lvc:CartesianChart Margin="10"  Series="{Binding BlodP}" LegendLocation="Left" Grid.Row="1">
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis  Title="Date" FontSize="16" LabelsRotation="-15" Labels="{Binding Labels}" Foreground="#FF1D0000" >
+                <lvc:Axis  Title="Tidspukt for målling" FontSize="16"  LabelsRotation="-15" Labels="{Binding Labels}" Foreground="#FF1D0000" >
                     <lvc:Axis.Separator>
                         <lvc:Separator IsEnabled="False" Step="1">
                         </lvc:Separator>
@@ -20,9 +26,12 @@
                 </lvc:Axis>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Sales" Foreground="#FF1D0000" FontSize="16"></lvc:Axis>
+                <lvc:Axis Title="mmHg" Foreground="#FF1D0000" FontSize="16"></lvc:Axis>
             </lvc:CartesianChart.AxisY>
 
         </lvc:CartesianChart>
+        <DockPanel Margin="0,0,0.286,-0.286" Grid.Row="2">
+            <Button Content="  [Esc] Tilbage" Command="{Binding CloseThisWindowCommand}" />
+        </DockPanel>
     </Grid>
 </Window>

@@ -27,9 +27,72 @@ namespace P_Layer.Views
         {
             MainWinRef = mainWinRef;
 
-            ViewModel = new BlodSViewModel(this, mainWinRef, logicStumpRef);
+            ViewModel = new BlodSViewModel(this, MainWinRef, logicStumpRef);
             InitializeComponent();
             DataContext = ViewModel;
+        }
+        private void Tastatur_Tryk(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+
+                case Key.Escape:
+                    if (ViewModel.CloseThisWindowHandlerCanExecute())
+                    {
+                        ViewModel.CloseThisWindowHandler();
+                    }
+                    
+                    break;
+                #region SpareKeys
+
+                case Key.D0:
+                    break;
+                case Key.D1:
+                    break;
+                case Key.D2:
+                    break;
+                case Key.D3:
+                    break;
+                case Key.D4:
+
+                    break;
+                case Key.D5:
+                    break;
+                case Key.D6:
+                    break;
+                case Key.D7:
+                    break;
+                case Key.D8:
+                    break;
+                case Key.D9:
+                    break;
+
+                
+                case Key.F2:
+
+                    break;
+                case Key.F3:
+
+                    break;
+                case Key.F4:
+
+                    break;
+                case Key.F5:
+                    break;
+                case Key.F6:
+                    break;
+                case Key.F7:
+                    break;
+                case Key.F8:
+                    break;
+                case Key.F9:
+                    break;
+
+                default:
+                    break;
+                    #endregion
+            }
+
         }
     }
 }

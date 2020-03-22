@@ -13,16 +13,17 @@ using MyCommands;
 
 namespace P_Layer.ViewModels
 {
-    public class LoginViewModel: INotifyPropertyChanged
+    public class LoginViewModel : INotifyPropertyChanged
     {
         #region Variabler
         Window ThisWindow;
+        Window MainWindow;
         LogicStump logicStump;
         public bool LoginOk { get; set; }
 
 
         public String Username { get; set; }
-       
+
         private String password;
 
         public String Password
@@ -38,18 +39,23 @@ namespace P_Layer.ViewModels
 
         #endregion
         #region Ctor
-        public LoginViewModel(Window WindowRef, Window MainWinRef,LogicStump logicStumpRef )
+        public LoginViewModel(Window WindowRef, Window MainWinRef, LogicStump logicStumpRef)
         {
             ThisWindow = WindowRef;
             logicStump = logicStumpRef;
             Username = "999999-0000";
             Password = "testpw";
+            MainWindow = MainWinRef;
+            WindowRef.Top = MainWindow.Top;
+            WindowRef.Left = MainWindow.Left;
+            
+
         }
 
         #endregion
         #region Metoder
 
-        
+
 
         #endregion
 
@@ -59,7 +65,7 @@ namespace P_Layer.ViewModels
         ICommand loginCommand;
         public ICommand LoginCommand
         {
-            get { return loginCommand ?? (loginCommand = new RelayCommand(Login, LoginCanExecute)); }
+            get { return loginCommand ?? (loginCommand = new RelayCommand(LoginHandler, LoginHandlerCanExecute)); }
         }
         private String errorType;
 
@@ -69,45 +75,72 @@ namespace P_Layer.ViewModels
             set { errorType = value; Notify(); }
         }
 
-      
 
-        private void Login()
+
+        public void LoginHandler()
         {
-            int LoginProces = logicStump.checkLogin(Username, Password);
+            int LoginProces = logicStump.CheckLogin(Username, Password);
             switch (LoginProces)
             {
                 case 1:
                     logicStump.LoginSucceeded = Username;
-                        ThisWindow.Close();
+                    ThisWindow.Close();
 
                     break;
                 case 2:
-                    ErrorType = "* Username forkert";
+                    ErrorType = "* CPR Findes ikke";
                     break;
                 case 3:
-                    ErrorType = "* Password forkert";
+                    ErrorType = "* Koden forkert";
                     break;
-                
+
                 default:
                     break;
-           
+
             }
         }
 
-        private bool LoginCanExecute()
+        public bool LoginHandlerCanExecute()
         {
-            if (Username[6]=='-' && Username.Length == 11)
+            if (Username[6] == '-' && Username.Length == 11)
             {
                 return true;
 
             }
-            else if (!Username.Contains("-") && Username.Length ==10)
+            else if (!Username.Contains("-") && Username.Length == 10)
             {
                 return true;
 
             }
             return false;
-            
+
+        }
+
+        #endregion
+        #region close Application window
+
+        ICommand closeCommand;
+        public ICommand CloseCommand
+        {
+            get { return closeCommand ?? (closeCommand = new RelayCommand(CloseHandlerExecute, CloseHandlerCanExecute)); }
+        }
+
+
+
+
+
+        public void CloseHandlerExecute()
+        {
+            MessageBoxResult result = MessageBox.Show("Vil du lukke programmet?", "Bekræft lukning", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+            if (result == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
+        }
+
+        public bool CloseHandlerCanExecute()
+        {
+            return true;
         }
 
         #endregion

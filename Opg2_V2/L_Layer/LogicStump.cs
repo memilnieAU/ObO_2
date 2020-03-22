@@ -32,7 +32,7 @@ namespace L_Layer
         #endregion
 
         #region LoginTest
-        public int checkLogin( String socSecNb, String pw )
+        public int CheckLogin( String socSecNb, String pw )
         {
             if (socSecNb == "999999-0000" && pw == "testpw"|| socSecNb == "9999990000" && pw == "testpw")
             {
@@ -49,17 +49,17 @@ namespace L_Layer
         #endregion
 
         #region GetMetoder
-        public List<DTO_Weight> getWeightAndBMIData(string id)
+        public List<DTO_Weight> GetWeightAndBMIData(string id)
         {
             return weightList_;
         }
 
-        public List<DTO_BSugar> getBSugarData(string id)
+        public List<DTO_BSugar> GetBSugarData(string id)
         {
             return bsList_;
         }
 
-        public List<DTO_BPressure> getBPressureData(string id)
+        public List<DTO_BPressure> GetBPressureData(string id)
         {
             return bpList_;
         }

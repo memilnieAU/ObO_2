@@ -2,12 +2,14 @@
 using L_Layer;
 using LiveCharts;
 using LiveCharts.Wpf;
+using MyCommands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 
 
@@ -17,11 +19,15 @@ namespace P_Layer.ViewModels
     {
         Window ThisWindow;
         LogicStump logicStump;
+        Window MainWindow;
         public WeightViewModel(Window WindowRef, Window MainWinRef, LogicStump logicStumpRef)
         {
             ThisWindow = WindowRef;
             logicStump = logicStumpRef;
-            grafLoad();
+            MainWindow = MainWinRef;
+            ThisWindow.Top = MainWindow.Top;
+            ThisWindow.Left = MainWindow.Left;
+            GrafLoad();
         }
         #region Chart
         public SeriesCollection WeigthGraf { get; set; }
@@ -35,13 +41,13 @@ namespace P_Layer.ViewModels
 
         LineSeries WeigthLine;
         LineSeries BmiLine;
-        void grafLoad()
+        void GrafLoad()
         {
             WeigthGraf = new SeriesCollection();
             WeigthLine = new LineSeries {Fill = Brushes.Transparent,  Title = "Vægt", Values = new ChartValues<double>(), ScalesYAt = 0,Foreground = Brushes.Red };
             BmiLine = new LineSeries { Fill = Brushes.Transparent , Title = "Bmi", Values = new ChartValues<int>(), ScalesYAt = 1, Foreground = Brushes.Blue };
             labelL = new List<string>();
-            foreach (DTO_Weight item in logicStump.getWeightAndBMIData(""))
+            foreach (DTO_Weight item in logicStump.GetWeightAndBMIData(""))
             {
                 WeigthLine.Values.Add(item.Weight_);
                 BmiLine.Values.Add(item.BMI_);
@@ -78,6 +84,32 @@ namespace P_Layer.ViewModels
 
 
         }
+        #endregion
+
+
+        #region Close this Window
+
+        ICommand closeThisWindowCommand;
+     
+
+        public ICommand CloseThisWindowCommand
+        {
+            get { return closeThisWindowCommand ?? (closeThisWindowCommand = new RelayCommand(CloseThisWindowHandler, CloseThisWindowHandlerCanExecute)); }
+        }
+
+        public void CloseThisWindowHandler()
+        {
+            ThisWindow.Close();
+            
+        }
+
+        public bool CloseThisWindowHandlerCanExecute()
+        {
+           
+                return true;
+            
+        }
+
         #endregion
     }
 }

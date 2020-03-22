@@ -5,36 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P_Layer.Views"
         mc:Ignorable="d"
-        Title="LoginView" Height="200" Width="300"
-        FontSize="16" Closing="Window_Closing" 
-          Background="LightGray"
+        Title="Login vindue" Height="200" Width="300"
+        FontSize="16" 
+          Background="LightGray"   PreviewKeyDown="Tastatur_Tryk"
           >
     <Grid >
-        
+
         <Grid  Background="Black">
-            
-        <StackPanel x:Name="Stack_Master" Orientation="Vertical" Background="LightGray" Margin="2" >
-            <StackPanel x:Name="Stack_UserName" Orientation="Horizontal" Background="#FFBBB9B9" Margin="4,2">
-                <Label x:Name="Lab_Username" Content="CPR: " />
-                <TextBox x:Name="TBx_UserName" Text="{Binding Path=Username,UpdateSourceTrigger=PropertyChanged}"  TextAlignment="Center" Margin="0,3,0,0" BorderThickness="0" Background="{Binding ElementName=Stack_UserName}" />
-            </StackPanel>
-            <StackPanel x:Name="Stack_PassWord" Orientation="Horizontal" Background="#FFBBB9B9" Margin="4,2">
-                <Label x:Name="Lab_PassWord" Content="Kode: " />
-                <TextBox x:Name="TBx_PassWord" Text="{Binding Path=Password,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Margin="0,3,0,0" BorderThickness="0" Background="{Binding ElementName=Stack_PassWord}"/>
-               
-            </StackPanel>
-             
-            <StackPanel x:Name="Stack_Button" Margin="4,2">
-                <Button x:Name="But_Login" Content="Login"  Command="{Binding LoginCommand, Mode=OneWay}"/>
-            </StackPanel>
-                <StackPanel x:Name="Stack_Help" Background="LightGray" Margin="4,2"  >
-            <TextBox x:Name="TBx_Help" IsReadOnly="True" BorderThickness="0" Text="{Binding Path=ErrorType , Mode=TwoWay}" Background="{Binding ElementName=Stack_Help}"/>
-                    
+
+            <StackPanel x:Name="Stack_Master" Orientation="Vertical" Background="LightGray" Margin="2" >
+                <StackPanel x:Name="Stack_UserName" Orientation="Horizontal" Background="#FFBBB9B9" Margin="4,2">
+                    <Label x:Name="Lab_Username" Content="CPR: " />
+                    <TextBox x:Name="TBx_UserName" Text="{Binding Path=Username,UpdateSourceTrigger=PropertyChanged}"  TextAlignment="Center" Margin="0,3,0,0" BorderThickness="0" Background="{Binding ElementName=Stack_UserName}" />
+                </StackPanel>
+                <StackPanel x:Name="Stack_PassWord" Orientation="Horizontal" Background="#FFBBB9B9" Margin="4,2">
+                    <Label x:Name="Lab_PassWord" Content="Kode: " />
+                    <TextBox x:Name="TBx_PassWord" Text="{Binding Path=Password,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" Margin="0,3,0,0" BorderThickness="0" Background="{Binding ElementName=Stack_PassWord}"/>
+
                 </StackPanel>
 
-        </StackPanel>
-            
+                <StackPanel x:Name="Stack_Help" Background="LightGray" Margin="4,2"  >
+                    <TextBox x:Name="TBx_Help" IsReadOnly="True" BorderThickness="0" Text="{Binding Path=ErrorType , Mode=TwoWay}" Background="{Binding ElementName=Stack_Help}"/>
+
+                </StackPanel>
+                <StackPanel x:Name="Stack_Button" Margin="4,2">
+                    <Button x:Name="But_Login" Content="[Enter] Login"  Command="{Binding LoginCommand, Mode=OneWay}"/>
+                    <Button x:Name="But_Close" Content="[Esc] Luk"  Command="{Binding CloseCommand, Mode=OneWay}"/>
+                </StackPanel>
+
+            </StackPanel>
+
         </Grid>
-            
+
     </Grid>
 </Window>

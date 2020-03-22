@@ -23,18 +23,98 @@ namespace P_Layer.Views
     {
         LoginViewModel ViewModel;
         Window MainWinRef;
-        public LoginView(Window mainWinRef , LogicStump logicStumpRef)
+        public LoginView(Window mainWinRef, LogicStump logicStumpRef)
         {
             MainWinRef = mainWinRef;
-            ViewModel = new LoginViewModel(this, mainWinRef, logicStumpRef);
+            ViewModel = new LoginViewModel(this, MainWinRef, logicStumpRef);
             InitializeComponent();
             DataContext = ViewModel;
             
+
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        
+        private void Tastatur_Tryk(object sender, KeyEventArgs e)
         {
-            
+            switch (e.Key)
+            {
+
+                case Key.Enter:
+                case Key.Oem5:
+                    if (ViewModel.LoginHandlerCanExecute())
+                    {
+                        ViewModel.LoginHandler();
+                    }
+                    break;
+
+                case Key.Tab:
+                    if (TBx_UserName.IsFocused)
+                    {
+                        TBx_PassWord.Focus();
+                    }
+                    else if (TBx_PassWord.IsFocused)
+                    {
+                        TBx_UserName.Focus();
+                    }
+                    break;
+                case Key.Escape:
+                    if (ViewModel.CloseHandlerCanExecute())
+                    {
+                        ViewModel.CloseHandlerExecute();
+                    }
+                    break;
+                #region SpareKeys
+
+                case Key.D0:
+                    break;
+                case Key.D1:
+                    break;
+                case Key.D2:
+                    break;
+                case Key.D3:
+                    break;
+                case Key.D4:
+
+                    break;
+                case Key.D5:
+                    break;
+                case Key.D6:
+                    break;
+                case Key.D7:
+                    break;
+                case Key.D8:
+                    break;
+                case Key.D9:
+                    break;
+
+                case Key.F1:
+
+                    break;
+                case Key.F2:
+
+                    break;
+                case Key.F3:
+
+                    break;
+                case Key.F4:
+
+                    break;
+                case Key.F5:
+                    break;
+                case Key.F6:
+                    break;
+                case Key.F7:
+                    break;
+                case Key.F8:
+                    break;
+                case Key.F9:
+                    break;
+
+                default:
+                    break;
+                #endregion
+            }
+
         }
     }
 }
