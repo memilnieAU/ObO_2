@@ -43,8 +43,8 @@ namespace P_Layer.ViewModels
         {
             ThisWindow = WindowRef;
             logicStump = logicStumpRef;
-            Username = "999999-0000";
-            Password = "testpw";
+            Username = "DDMMYY-XXXX";
+            Password = "****";
             MainWindow = MainWinRef;
             WindowRef.Top = MainWindow.Top;
             WindowRef.Left = MainWindow.Left;
@@ -102,7 +102,10 @@ namespace P_Layer.ViewModels
 
         public bool LoginHandlerCanExecute()
         {
-            if (Username[6] == '-' && Username.Length == 11)
+            if (Username.Length >=10)
+            {
+
+                if (Username[6] == '-' && Username.Length == 11)
             {
                 return true;
 
@@ -111,6 +114,7 @@ namespace P_Layer.ViewModels
             {
                 return true;
 
+            }
             }
             return false;
 

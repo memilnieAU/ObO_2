@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Login vindue" Height="200" Width="300"
         FontSize="16" 
-          Background="LightGray"   PreviewKeyDown="Tastatur_Tryk"
+          Background="LightGray"   PreviewKeyDown="Tastatur_Tryk" 
           >
     <Grid >
 

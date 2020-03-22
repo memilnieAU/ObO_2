@@ -29,11 +29,13 @@ namespace P_Layer.Views
             ViewModel = new LoginViewModel(this, MainWinRef, logicStumpRef);
             InitializeComponent();
             DataContext = ViewModel;
-            
+
+            TBx_UserName.SelectAll();
+            TBx_UserName.Focus();
 
         }
 
-        
+
         private void Tastatur_Tryk(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -51,10 +53,13 @@ namespace P_Layer.Views
                     if (TBx_UserName.IsFocused)
                     {
                         TBx_PassWord.Focus();
+                        TBx_PassWord.SelectAll();
                     }
                     else if (TBx_PassWord.IsFocused)
                     {
                         TBx_UserName.Focus();
+                        TBx_UserName.SelectAll();
+
                     }
                     break;
                 case Key.Escape:
@@ -112,10 +117,11 @@ namespace P_Layer.Views
 
                 default:
                     break;
-                #endregion
+                    #endregion
             }
 
         }
+
+       
     }
 }
- 
