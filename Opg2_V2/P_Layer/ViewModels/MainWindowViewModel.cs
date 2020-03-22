@@ -262,9 +262,9 @@ namespace P_Layer.ViewModels
 
         public void OpenWeightWindowHandler()
         {
+            thisMainWindow.Hide();
             weigtWindow = new WeightViewModel( this, logicStump);
             //Application.Current.MainWindow.Hide();
-            thisMainWindow.Hide();
             
         }
 

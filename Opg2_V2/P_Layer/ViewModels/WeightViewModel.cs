@@ -24,9 +24,9 @@ namespace P_Layer.ViewModels
         public WeightViewModel(MainWindowViewModel MainWinRef, LogicStump logicStumpRef)
         {
             ThisWindow = new WeightView(this);
-           
-            logicStump = logicStumpRef;
+            ThisWindow.Show();
             MainWindow = MainWinRef;
+            logicStump = logicStumpRef;
             ThisWindow.Top = MainWindow.thisMainWindow.Top;
             ThisWindow.Left = MainWindow.thisMainWindow.Left;
             GrafLoad();
