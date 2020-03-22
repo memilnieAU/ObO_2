@@ -134,7 +134,10 @@ namespace P_Layer.ViewModels
             MessageBoxResult result = MessageBox.Show("Vil du lukke programmet?", "Bekræft lukning", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
             if (result == MessageBoxResult.Yes)
             {
-                Application.Current.Shutdown();
+                
+                logicStump.LoginSucceeded = "";
+                ThisWindow.Close();
+                
             }
         }
 

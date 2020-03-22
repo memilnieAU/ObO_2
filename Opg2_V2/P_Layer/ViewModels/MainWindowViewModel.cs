@@ -162,7 +162,7 @@ namespace P_Layer.ViewModels
             {
                 thisMainWindow.Show();
             }
-            else
+            if(String.IsNullOrWhiteSpace(logicStump.LoginSucceeded))
             {
                 thisMainWindow.Close();
             }
