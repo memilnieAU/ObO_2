@@ -23,7 +23,7 @@ namespace P_Layer.Views
     {
         WeightViewModel ViewModel;
         Window MainWinRef;
-        public WeightView(Window mainWinRef, LogicStump logicStumpRef)
+        public WeightView(Window mainWinRef, Logic logicStumpRef)
         {
             MainWinRef = mainWinRef;
 

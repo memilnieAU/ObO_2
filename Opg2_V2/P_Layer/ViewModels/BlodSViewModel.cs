@@ -16,9 +16,9 @@ namespace P_Layer.ViewModels
     public class BlodSViewModel
     {
         Window ThisWindow;
-        LogicStump logicStump;
+        Logic logicStump;
         Window MainWindow;
-        public BlodSViewModel(Window WindowRef, Window MainWinRef, LogicStump logicStumpRef)
+        public BlodSViewModel(Window WindowRef, Window MainWinRef, Logic logicStumpRef)
         {
             ThisWindow = WindowRef;
             logicStump = logicStumpRef;

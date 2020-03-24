@@ -12,6 +12,7 @@ using DTOs;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using System.IO;
 
 namespace P_Layer.ViewModels
 {
@@ -37,13 +38,14 @@ namespace P_Layer.ViewModels
         BlodPView blodPWindow;
         WeightView weigtWindow;
         LogicStump logicStump;
-
+        Logic logic;
 
         public MainWindowViewModel(Window mainWindowRef)
         {
             thisMainWindow = mainWindowRef;
             thisMainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            logicStump = new LogicStump();
+            logic = new Logic();
+
             if (OpenLoginViewHandlerCanExecute())  //Validering på om der er lavet et vindue tidligere
             {
                 OpenLoginViewHandler();            //Åbner et nyt login vindue
@@ -123,14 +125,14 @@ namespace P_Layer.ViewModels
             {
                 FourWeekChecked = false;
             }
-            
-                DataIsSent = "Periode sendt";
+
+            DataIsSent = "Periode sendt";
         }
-       
-        
+
+
         public bool SendDataHandlerCanExecute()
         {
-            
+
 
             if (!OneWeekChecked && !TwoWeekChecked && !FourWeekChecked)
             {
@@ -154,15 +156,15 @@ namespace P_Layer.ViewModels
 
         private void OpenLoginViewHandler()
         {
-            loginWindow = new LoginView(thisMainWindow, logicStump);
+            loginWindow = new LoginView(thisMainWindow, logic);
             //Application.Current.MainWindow.Hide();
             thisMainWindow.Hide();
             loginWindow.ShowDialog();
-            if (!String.IsNullOrWhiteSpace(logicStump.LoginSucceeded))
+            if (!String.IsNullOrWhiteSpace(logic.LoginSucceeded))
             {
                 thisMainWindow.Show();
             }
-            if(String.IsNullOrWhiteSpace(logicStump.LoginSucceeded))
+            if (String.IsNullOrWhiteSpace(logic.LoginSucceeded))
             {
                 thisMainWindow.Close();
             }
@@ -188,12 +190,12 @@ namespace P_Layer.ViewModels
 
         public void OpenBlodsugerWindowHandler()
         {
-            blodSWindow = new BlodSView(thisMainWindow, logicStump);
+            blodSWindow = new BlodSView(thisMainWindow, logic);
             //Application.Current.MainWindow.Hide();
             thisMainWindow.Hide();
             blodSWindow.ShowDialog();
             blodSWindow = null;
-            if (!String.IsNullOrWhiteSpace(logicStump.LoginSucceeded))
+            if (!String.IsNullOrWhiteSpace(logic.LoginSucceeded))
             {
                 thisMainWindow.Show();
             }
@@ -223,12 +225,12 @@ namespace P_Layer.ViewModels
 
         public void OpenBlodPWindowHandler()
         {
-            blodPWindow = new BlodPView(thisMainWindow, logicStump);
+            blodPWindow = new BlodPView(thisMainWindow, logic);
             //Application.Current.MainWindow.Hide();
             thisMainWindow.Hide();
             blodPWindow.ShowDialog();
             blodPWindow = null;
-            if (!String.IsNullOrWhiteSpace(logicStump.LoginSucceeded))
+            if (!String.IsNullOrWhiteSpace(logic.LoginSucceeded))
             {
                 thisMainWindow.Show();
             }
@@ -258,12 +260,12 @@ namespace P_Layer.ViewModels
 
         public void OpenWeightWindowHandler()
         {
-            weigtWindow = new WeightView(thisMainWindow, logicStump);
+            weigtWindow = new WeightView(thisMainWindow, logic);
             //Application.Current.MainWindow.Hide();
             thisMainWindow.Hide();
             weigtWindow.ShowDialog();
             weigtWindow = null;
-            if (!String.IsNullOrWhiteSpace(logicStump.LoginSucceeded))
+            if (!String.IsNullOrWhiteSpace(logic.LoginSucceeded))
             {
                 thisMainWindow.Show();
             }
@@ -297,6 +299,7 @@ namespace P_Layer.ViewModels
             blodPWindow = null;
             blodSWindow = null;
             weigtWindow = null;
+            logic.LoginSucceeded = "";
             if (OpenLoginViewHandlerCanExecute())  //Validering på om der er lavet et vindue tidligere
             {
                 OpenLoginViewHandler();            //Åbner et nyt login vindue
@@ -314,5 +317,8 @@ namespace P_Layer.ViewModels
 
         #endregion
 
+
+
+        
     }
 }

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Exceptionless" Version="4.3.2027" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DTOs\DTOs.csproj" />
     <ProjectReference Include="..\D_Layer\D_Layer.csproj" />
   </ItemGroup>

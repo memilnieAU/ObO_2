@@ -23,7 +23,7 @@ namespace P_Layer.Views
     {
         Window MainWinRef;
         BlodPViewModel ViewModel;
-        public BlodPView(Window mainWinRef, LogicStump logicStumpRef)
+        public BlodPView(Window mainWinRef, Logic logicStumpRef)
         {
             MainWinRef = mainWinRef;
             ViewModel = new BlodPViewModel(this, MainWinRef, logicStumpRef);

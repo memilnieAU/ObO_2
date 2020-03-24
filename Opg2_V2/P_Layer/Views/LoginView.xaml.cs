@@ -23,7 +23,7 @@ namespace P_Layer.Views
     {
         LoginViewModel ViewModel;
         Window MainWinRef;
-        public LoginView(Window mainWinRef, LogicStump logicStumpRef)
+        public LoginView(Window mainWinRef, Logic logicStumpRef)
         {
             MainWinRef = mainWinRef;
             ViewModel = new LoginViewModel(this, MainWinRef, logicStumpRef);

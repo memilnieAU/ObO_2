@@ -18,9 +18,9 @@ namespace P_Layer.ViewModels
     public class WeightViewModel
     {
         Window ThisWindow;
-        LogicStump logicStump;
+        Logic logicStump;
         Window MainWindow;
-        public WeightViewModel(Window WindowRef, Window MainWinRef, LogicStump logicStumpRef)
+        public WeightViewModel(Window WindowRef, Window MainWinRef, Logic logicStumpRef)
         {
             ThisWindow = WindowRef;
             logicStump = logicStumpRef;
@@ -47,7 +47,7 @@ namespace P_Layer.ViewModels
             WeigthLine = new LineSeries {Fill = Brushes.Transparent,  Title = "Vægt", Values = new ChartValues<double>(), ScalesYAt = 0,Foreground = Brushes.Red };
             BmiLine = new LineSeries { Fill = Brushes.Transparent , Title = "Bmi", Values = new ChartValues<int>(), ScalesYAt = 1, Foreground = Brushes.Blue };
             labelL = new List<string>();
-            foreach (DTO_Weight item in logicStump.GetWeightAndBMIData(""))
+            foreach (DTO_Weight item in logicStump.getWeightAndBMIData(""))
             {
                 WeigthLine.Values.Add(item.Weight_);
                 BmiLine.Values.Add(item.BMI_);

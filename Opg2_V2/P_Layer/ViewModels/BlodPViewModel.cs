@@ -17,9 +17,9 @@ namespace P_Layer.ViewModels
     public class BlodPViewModel
     {
         Window ThisWindow;
-        LogicStump logicStump;
+        Logic logicStump;
         Window MainWindow;
-        public BlodPViewModel(Window WindowRef, Window MainWinRef, LogicStump logicStumpRef)
+        public BlodPViewModel(Window WindowRef, Window MainWinRef, Logic logicStumpRef)
         {
             ThisWindow = WindowRef;
             logicStump = logicStumpRef;
@@ -45,7 +45,7 @@ namespace P_Layer.ViewModels
             SystolicLine = new ColumnSeries { Title = "Systoliske tryk", MaxColumnWidth = 15, MaxWidth = 25, Values = new ChartValues<int>() };
             DiastolicLine = new ColumnSeries { Title = "Diastoliske tryk", MaxColumnWidth = 15, Values = new ChartValues<int>() };
             labelL = new List<string>();
-            foreach (DTO_BPressure item in logicStump.GetBPressureData(""))
+            foreach (DTO_BPressure item in logicStump.getBPressureData(""))
             {
                 SystolicLine.Values.Add(item.Systolic_);
                 DiastolicLine.Values.Add(item.Diastolic_);

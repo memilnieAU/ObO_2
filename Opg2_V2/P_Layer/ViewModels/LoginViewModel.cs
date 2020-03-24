@@ -18,7 +18,7 @@ namespace P_Layer.ViewModels
         #region Variabler
         Window ThisWindow;
         Window MainWindow;
-        LogicStump logicStump;
+        Logic logicStump;
         public bool LoginOk { get; set; }
 
 
@@ -39,7 +39,7 @@ namespace P_Layer.ViewModels
 
         #endregion
         #region Ctor
-        public LoginViewModel(Window WindowRef, Window MainWinRef, LogicStump logicStumpRef)
+        public LoginViewModel(Window WindowRef, Window MainWinRef, Logic logicStumpRef)
         {
             ThisWindow = WindowRef;
             logicStump = logicStumpRef;

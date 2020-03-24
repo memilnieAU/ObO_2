@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTOs;
+using D_Layer;
+
 
 namespace L_Layer
 {
     // This is NOT a Logic tier.
     // It is at Logic stump (no connection to a Data tier) wich can be used ONLY to test the Presentation tier.
     // Test login is: social security number "999999-0000" and password "testpw"
-    public class LogicStump
+    public class LogicStump 
     {
         public String LoginSucceeded { get; set; }  //Husker hvem der har logget ind
         #region Variabler
@@ -18,6 +20,15 @@ namespace L_Layer
         private List<DTO_BSugar> bsList_;
         private List<DTO_BPressure> bpList_;
         #endregion
+
+        #region Noget med OPG3
+
+        DataFile dataFile;
+
+
+        #endregion
+
+
 
         #region Ctor
         public LogicStump()
@@ -28,23 +39,26 @@ namespace L_Layer
             LoadBTList();
             weightList_ = new List<DTO_Weight>();
             LoadVægtList();
+
+            dataFile = new DataFile();
+            
         }
         #endregion
 
         #region LoginTest
-        public int CheckLogin( String socSecNb, String pw )
+        public int CheckLogin(String socSecNb, String pw)
         {
-            if (socSecNb == "999999-0000" && pw == "testpw"|| socSecNb == "9999990000" && pw == "testpw")
-            {
-             return 1;
 
-            }
-            else if (socSecNb == "999999-0000" || socSecNb == "9999990000")
+
+            if (dataFile.isUserRegistered(socSecNb, pw))
             {
-                return 3;  //Så er pw forkert
+                return 1;
             }
-           
-            return 2;
+            int test = dataFile.GetHeight(socSecNb);
+            dataFile.getWeightData(socSecNb);
+            dataFile.GetBSugarData(socSecNb);
+            dataFile.getBPressureData(socSecNb);
+            return 0;
         }
         #endregion
 
