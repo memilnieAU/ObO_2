@@ -18,6 +18,16 @@ namespace P_Layer.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
+        private static MainWindowViewModel instance;
+
+        public static MainWindowViewModel Instance
+        {
+            get {
+                if (instance == null)
+                    instance = new MainWindowViewModel();
+                return instance; }
+        }
+
         #region INotifyPropertyChanged implementation
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -37,8 +47,13 @@ namespace P_Layer.ViewModels
         BlodSView blodSWindow;
         BlodPView blodPWindow;
         WeightView weigtWindow;
-        LogicStump logicStump;
+     
         Logic logic;
+
+        public MainWindowViewModel()
+        {
+
+        }
 
         public MainWindowViewModel(Window mainWindowRef)
         {
@@ -147,6 +162,7 @@ namespace P_Layer.ViewModels
 
 
         #region Open login window
+
 
         ICommand openloginWindowCommand;
         public ICommand OpenLoginWindowCommand

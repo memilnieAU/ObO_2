@@ -7,11 +7,13 @@ namespace L_Layer
 {
     public class Logic
     {
-        DataFile dataFile;
-
+        
+        IData dataFile;
         public Logic()
         {
+            
             dataFile = new DataFile();
+           
         }
 
         

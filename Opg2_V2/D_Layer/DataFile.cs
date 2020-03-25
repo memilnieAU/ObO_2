@@ -9,19 +9,17 @@ namespace D_Layer
     {
         private FileStream input;
         private StreamReader reader;
-        // Herunder KAN du skrive en sti til den mappe hvori er gemt.
-        // MEN i fht. OPGAVE 3 SKAL filerne placeres korrekt i PROJEKTET - ellers virker det ikke når du afleverer opgaven.
-        private const String filepath = @"\\C:\Users\userID\source\repos\Opgave3\Presentation_tier\bin\Debug\";
-
-        public DataFile() { }
         
+        public DataFile() { }
+
+
         public bool isUserRegistered(String socSecNb, String pw)
         {
             bool result = false;
-
+            
             input = new FileStream("Registered Users.txt", FileMode.Open, FileAccess.Read);
             reader = new StreamReader(input);
-           string path = input.ToString();
+            string path = input.ToString();
             string inputRecord;
             string[] inputFields;
 
@@ -31,17 +29,19 @@ namespace D_Layer
 
                 if (inputFields[0] == socSecNb && inputFields[1] == pw)
                 {
-                    
+
                     result = true;
                     break;
                 }
             }
-            
+
             reader.Close();
 
             return result;
         }
 
+       
+        
         public int GetHeight(string socSecNb)
         {
             int result = 0;
@@ -57,11 +57,11 @@ namespace D_Layer
                 inputFields = inputRecord.Split(';');
                 if (inputFields[0] == socSecNb)
                 {
-                if (inputFields[2] != null)
-                {
-                    result = Convert.ToInt32(inputFields[2]);
-                    break;
-                }
+                    if (inputFields[2] != null)
+                    {
+                        result = Convert.ToInt32(inputFields[2]);
+                        break;
+                    }
 
                 }
             }
@@ -93,15 +93,15 @@ namespace D_Layer
                 if (inputFields[0] == socSecNb)
                 {
 
-                // gem data i listen
-                personWeight.Add(new DTO_Weight(Convert.ToDouble(inputFields[1]),0,Convert.ToDateTime(inputFields[2])));
+                    // gem data i listen
+                    personWeight.Add(new DTO_Weight(Convert.ToDouble(inputFields[1]), 0, Convert.ToDateTime(inputFields[2])));
                 }
             }
 
             // luk adgang til filen
             fileReader.Close();
 
-            
+
             return personWeight;
         }
 
@@ -128,7 +128,7 @@ namespace D_Layer
                 {
 
                     // gem data i listen
-                    personBSuger.Add(new DTO_BSugar(Convert.ToDouble( inputFields[1]),Convert.ToDateTime(inputFields[2])));
+                    personBSuger.Add(new DTO_BSugar(Convert.ToDouble(inputFields[1]), Convert.ToDateTime(inputFields[2])));
                 }
             }
 
@@ -162,7 +162,7 @@ namespace D_Layer
                 {
 
                     // gem data i listen
-                    personBPressure.Add(new DTO_BPressure(Convert.ToInt32(inputFields[1]),Convert.ToInt32(inputFields[2]),Convert.ToDateTime( inputFields[3])));
+                    personBPressure.Add(new DTO_BPressure(Convert.ToInt32(inputFields[1]), Convert.ToInt32(inputFields[2]), Convert.ToDateTime(inputFields[3])));
                 }
             }
 
@@ -172,5 +172,6 @@ namespace D_Layer
 
             return personBPressure;
         }
+        
     }
 }

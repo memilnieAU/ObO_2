@@ -16,12 +16,12 @@ namespace P_Layer.ViewModels
     public class BlodSViewModel
     {
         Window ThisWindow;
-        Logic logicStump;
+        Logic logic;
         Window MainWindow;
-        public BlodSViewModel(Window WindowRef, Window MainWinRef, Logic logicStumpRef)
+        public BlodSViewModel(Window WindowRef, Window MainWinRef, Logic logicRef)
         {
             ThisWindow = WindowRef;
-            logicStump = logicStumpRef;
+            logic = logicRef;
             MainWindow = MainWinRef;
             ThisWindow.Top = MainWindow.Top;
             ThisWindow.Left = MainWindow.Left;
@@ -44,11 +44,11 @@ namespace P_Layer.ViewModels
             SugerLine = new LineSeries {  Values = new ChartValues<double>()  };
 
             labelL = new List<string>();
-            foreach (DTO_BSugar item in logicStump.GetBSugarData(""))
+            foreach (DTO_BSugar item in logic.GetBSugarData(""))
             {
                 SugerLine.Values.Add(item.BloodSugar_);
 
-                labelL.Add(item.Date_.ToString().Substring(0, 16));
+                labelL.Add(item.Date_.ToString().Substring(10));
             }
 
             Labels = labelL.ToArray();

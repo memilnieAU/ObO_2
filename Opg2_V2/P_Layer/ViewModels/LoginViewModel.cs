@@ -18,7 +18,7 @@ namespace P_Layer.ViewModels
         #region Variabler
         Window ThisWindow;
         Window MainWindow;
-        Logic logicStump;
+        Logic logic;
         public bool LoginOk { get; set; }
 
 
@@ -39,17 +39,17 @@ namespace P_Layer.ViewModels
 
         #endregion
         #region Ctor
-        public LoginViewModel(Window WindowRef, Window MainWinRef, Logic logicStumpRef)
+        public LoginViewModel(Window WindowRef, Window MainWinRef, Logic logicRef)
         {
             ThisWindow = WindowRef;
-            logicStump = logicStumpRef;
-            Username = "DDMMYY-XXXX";
-            Password = "****";
+            logic = logicRef;
+            Username = "123456-7890";
+            Password = "1234";
             MainWindow = MainWinRef;
             WindowRef.Top = MainWindow.Top;
             WindowRef.Left = MainWindow.Left;
-            
 
+            //MainWindowViewModel.Instance.OpenBlodPWindowCommand
         }
 
         #endregion
@@ -79,11 +79,11 @@ namespace P_Layer.ViewModels
 
         public void LoginHandler()
         {
-            int LoginProces = logicStump.CheckLogin(Username, Password);
+            int LoginProces = logic.CheckLogin(Username, Password);
             switch (LoginProces)
             {
                 case 1:
-                    logicStump.LoginSucceeded = Username;
+                    logic.LoginSucceeded = Username;
                     ThisWindow.Close();
 
                     break;
@@ -139,7 +139,7 @@ namespace P_Layer.ViewModels
             if (result == MessageBoxResult.Yes)
             {
                 
-                logicStump.LoginSucceeded = "";
+                logic.LoginSucceeded = "";
                 ThisWindow.Close();
                 
             }

@@ -23,10 +23,10 @@ namespace P_Layer.Views
     {
         LoginViewModel ViewModel;
         Window MainWinRef;
-        public LoginView(Window mainWinRef, Logic logicStumpRef)
+        public LoginView(Window mainWinRef, Logic logicRef)
         {
             MainWinRef = mainWinRef;
-            ViewModel = new LoginViewModel(this, MainWinRef, logicStumpRef);
+            ViewModel = new LoginViewModel(this, MainWinRef, logicRef);
             InitializeComponent();
             DataContext = ViewModel;
 

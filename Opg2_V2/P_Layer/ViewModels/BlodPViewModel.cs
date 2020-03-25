@@ -17,12 +17,12 @@ namespace P_Layer.ViewModels
     public class BlodPViewModel
     {
         Window ThisWindow;
-        Logic logicStump;
+        Logic logic;
         Window MainWindow;
-        public BlodPViewModel(Window WindowRef, Window MainWinRef, Logic logicStumpRef)
+        public BlodPViewModel(Window WindowRef, Window MainWinRef, Logic logicRef)
         {
             ThisWindow = WindowRef;
-            logicStump = logicStumpRef;
+            logic = logicRef;
             MainWindow = MainWinRef;
             ThisWindow.Top = MainWindow.Top;
             ThisWindow.Left = MainWindow.Left;
@@ -41,15 +41,16 @@ namespace P_Layer.ViewModels
         ColumnSeries DiastolicLine;
         void GrafLoad()
         {
+            
             BlodP = new SeriesCollection();
             SystolicLine = new ColumnSeries { Title = "Systoliske tryk", MaxColumnWidth = 15, MaxWidth = 25, Values = new ChartValues<int>() };
             DiastolicLine = new ColumnSeries { Title = "Diastoliske tryk", MaxColumnWidth = 15, Values = new ChartValues<int>() };
             labelL = new List<string>();
-            foreach (DTO_BPressure item in logicStump.getBPressureData(""))
+            foreach (DTO_BPressure item in logic.getBPressureData(""))
             {
                 SystolicLine.Values.Add(item.Systolic_);
                 DiastolicLine.Values.Add(item.Diastolic_);
-                labelL.Add(item.Date_.ToString().Substring(0, 16));
+                labelL.Add(item.Date_.ToString().Substring(0,10));
             }
 
             Labels = labelL.ToArray();
