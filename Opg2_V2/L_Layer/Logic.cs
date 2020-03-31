@@ -20,15 +20,16 @@ namespace L_Layer
         public string LoginSucceeded { get; set; }
         public int CheckLogin(String socSecNb, String pw)
         {
-            if (dataFile.isUserRegistered(socSecNb, pw))
+            int result = dataFile.isUserRegistered(socSecNb, pw);
+            if( result == 1)
             {
                 LoginSucceeded = socSecNb;
-                return 1;
-
+                
+                
             }
-            int test = dataFile.GetHeight(socSecNb);
+            
 
-            return 0;
+            return result;
         }
         public List<DTO_BPressure> getBPressureData(string socSecNb)
         {

@@ -169,7 +169,8 @@ namespace P_Layer.ViewModels
         {
             get { return openloginWindowCommand ?? (openloginWindowCommand = new RelayCommand(OpenLoginViewHandler, OpenLoginViewHandlerCanExecute)); }
         }
-
+        
+        public String UserInSystem { get; set; }
         private void OpenLoginViewHandler()
         {
             loginWindow = new LoginView(thisMainWindow, logic);
@@ -178,6 +179,7 @@ namespace P_Layer.ViewModels
             loginWindow.ShowDialog();
             if (!String.IsNullOrWhiteSpace(logic.LoginSucceeded))
             {
+                UserInSystem = "Du er logget på som: " + logic.LoginSucceeded.Substring(0,6);
                 thisMainWindow.Show();
             }
             if (String.IsNullOrWhiteSpace(logic.LoginSucceeded))

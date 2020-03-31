@@ -29,10 +29,7 @@ namespace P_Layer.ViewModels
         public String Password
         {
             get { return password; }
-            set
-            {
-                password = value;
-            }
+            set { password = value; }
         }
 
 
@@ -43,8 +40,10 @@ namespace P_Layer.ViewModels
         {
             ThisWindow = WindowRef;
             logic = logicRef;
-            Username = "123456-7890";
-            Password = "1234";
+            //Username = "123456-7890";
+            //Password = "1234";
+            Username = "DDMMYY-XXXX";
+            Password = "****";
             MainWindow = MainWinRef;
             WindowRef.Top = MainWindow.Top;
             WindowRef.Left = MainWindow.Left;
@@ -102,22 +101,19 @@ namespace P_Layer.ViewModels
 
         public bool LoginHandlerCanExecute()
         {
-            if (Username.Length >=10)
+            if (Username.Length >= 10)
             {
-
                 if (Username[6] == '-' && Username.Length == 11)
-            {
-                return true;
+                {
+                    return true;
 
-            }
-            else if (!Username.Contains("-") && Username.Length == 10)
-            {
-                return true;
-
-            }
+                }
+                else if (!Username.Contains("-") && Username.Length == 10)
+                {
+                    return true;
+                }
             }
             return false;
-
         }
 
         #endregion
@@ -130,18 +126,13 @@ namespace P_Layer.ViewModels
         }
 
 
-
-
-
         public void CloseHandlerExecute()
         {
             MessageBoxResult result = MessageBox.Show("Vil du lukke programmet?", "Bekræft lukning", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
             if (result == MessageBoxResult.Yes)
             {
-                
                 logic.LoginSucceeded = "";
                 ThisWindow.Close();
-                
             }
         }
 

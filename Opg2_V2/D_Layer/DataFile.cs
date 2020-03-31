@@ -13,9 +13,9 @@ namespace D_Layer
         public DataFile() { }
 
 
-        public bool isUserRegistered(String socSecNb, String pw)
+        public int isUserRegistered(String socSecNb, String pw)
         {
-            bool result = false;
+            int result = 2;
             
             input = new FileStream("Registered Users.txt", FileMode.Open, FileAccess.Read);
             reader = new StreamReader(input);
@@ -30,8 +30,12 @@ namespace D_Layer
                 if (inputFields[0] == socSecNb && inputFields[1] == pw)
                 {
 
-                    result = true;
+                    result = 1;
                     break;
+                }
+                else if (inputFields[0] == socSecNb)
+                {
+                    result = 3;
                 }
             }
 

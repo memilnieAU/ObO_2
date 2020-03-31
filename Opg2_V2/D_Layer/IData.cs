@@ -7,7 +7,7 @@ namespace D_Layer
 {
     public interface IData
     {
-        bool isUserRegistered(String socSecNb, String pw);
+        int isUserRegistered(String socSecNb, String pw);
         int GetHeight(String socSecNb);
         List<DTO_Weight> getWeightData(String socSecNb);
         List<DTO_BSugar> GetBSugarData(String socSecNb);
