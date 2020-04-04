@@ -18,10 +18,10 @@ namespace L_Layer
 
         
         public string LoginSucceeded { get; set; }
-        public int CheckLogin(String socSecNb, String pw)
+        public bool CheckLogin(String socSecNb, String pw)
         {
-            int result = dataFile.isUserRegistered(socSecNb, pw);
-            if( result == 1)
+            bool result = dataFile.isUserRegistered(socSecNb, pw);
+            if( result == true)
             {
                 LoginSucceeded = socSecNb;
                 

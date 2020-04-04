@@ -20,8 +20,6 @@ namespace P_Layer.ViewModels
         Window MainWindow;
         Logic logic;
         public bool LoginOk { get; set; }
-
-
         public String Username { get; set; }
 
         private String password;
@@ -31,8 +29,6 @@ namespace P_Layer.ViewModels
             get { return password; }
             set { password = value; }
         }
-
-
 
         #endregion
         #region Ctor
@@ -47,7 +43,6 @@ namespace P_Layer.ViewModels
             MainWindow = MainWinRef;
             WindowRef.Top = MainWindow.Top;
             WindowRef.Left = MainWindow.Left;
-
             //MainWindowViewModel.Instance.OpenBlodPWindowCommand
         }
 
@@ -74,29 +69,35 @@ namespace P_Layer.ViewModels
             set { errorType = value; Notify(); }
         }
 
-
-
         public void LoginHandler()
         {
-            int LoginProces = logic.CheckLogin(Username, Password);
-            switch (LoginProces)
+            bool LoginProces = logic.CheckLogin(Username, Password);
+
+            if (LoginProces == true)
             {
-                case 1:
-                    logic.LoginSucceeded = Username;
-                    ThisWindow.Close();
-
-                    break;
-                case 2:
-                    ErrorType = "* CPR Findes ikke";
-                    break;
-                case 3:
-                    ErrorType = "* Koden forkert";
-                    break;
-
-                default:
-                    break;
-
+                logic.LoginSucceeded = Username;
+                ThisWindow.Close();
             }
+            else
+            {
+                ErrorType = "CPR eller kode forkert";
+            }
+
+            //switch (LoginProces)
+            //{
+            //    case 1:
+            //        logic.LoginSucceeded = Username;
+            //        ThisWindow.Close();
+            //        break;
+            //    case 2:
+            //        ErrorType = "* CPR Findes ikke";
+            //        break;
+            //    case 3:
+            //        ErrorType = "* Koden forkert";
+            //        break;
+            //    default:
+            //        break;
+            //}
         }
 
         public bool LoginHandlerCanExecute()

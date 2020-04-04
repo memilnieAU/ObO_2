@@ -13,9 +13,9 @@ namespace D_Layer
         public DataFile() { }
 
 
-        public int isUserRegistered(String socSecNb, String pw)
+        public bool isUserRegistered(String socSecNb, String pw)
         {
-            int result = 2;
+            bool result = false;
             
             input = new FileStream("Registered Users.txt", FileMode.Open, FileAccess.Read);
             reader = new StreamReader(input);
@@ -26,17 +26,24 @@ namespace D_Layer
             while ((inputRecord = reader.ReadLine()) != null)
             {
                 inputFields = inputRecord.Split(';');
-
                 if (inputFields[0] == socSecNb && inputFields[1] == pw)
                 {
 
-                    result = 1;
+                    result = true;
                     break;
                 }
-                else if (inputFields[0] == socSecNb)
-                {
-                    result = 3;
-                }
+                #region LoginControler
+                //if (inputFields[0] == socSecNb && inputFields[1] == pw)
+                //{
+
+                //    result = 1;
+                //    break;
+                //}
+                //else if (inputFields[0] == socSecNb)
+                //{
+                //    result = 3;
+                //}
+                #endregion
             }
 
             reader.Close();
@@ -176,6 +183,6 @@ namespace D_Layer
 
             return personBPressure;
         }
-        
+
     }
 }
